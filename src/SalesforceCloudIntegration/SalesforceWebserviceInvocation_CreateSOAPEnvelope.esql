@@ -1,0 +1,26 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceWebserviceInvocation_CreateSOAPEnvelope
+** Description: This compute module wraps SOAP Envelope around the Salesforce request xml.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceWebserviceInvocation_CreateSOAPEnvelope
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		SET OutputRoot.XMLNSC.soapenv:Envelope.(XMLNSC.NamespaceDecl)xmlns:soapenv = soapenv;
+		SET OutputRoot.XMLNSC.soapenv:Envelope.(XMLNSC.NamespaceDecl)xmlns:urn = urn;
+		SET OutputRoot.XMLNSC.soapenv:Envelope.(XMLNSC.NamespaceDecl)xmlns:urn1 = urn1;
+		SET OutputRoot.XMLNSC.soapenv:Envelope.(XMLNSC.NamespaceDecl)xmlns:xsi = xsi;
+
+		SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Header.urn:SessionHeader.urn:sessionId = vSessionId;	
+
+		SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body = InputRoot.XMLNSC;
+		
+		SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.WebServiceURL = vServerUrl;
+		SET OutputLocalEnvironment.Destination.SOAP.Request.Operation = Environment.Variables.Salesforce.Operation;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

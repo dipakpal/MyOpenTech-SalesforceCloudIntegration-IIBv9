@@ -1,0 +1,35 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceWebserviceInvocation_PrepareLoginService
+** Description: This compute module prepares the Salesforce request xml for "login" service.
+*********************************************************************************************/
+
+-- Declare Namespaces
+DECLARE urn 	NAMESPACE 'urn:enterprise.soap.sforce.com';
+DECLARE urn1 	NAMESPACE 'urn:sobject.enterprise.soap.sforce.com';
+DECLARE sf	 	NAMESPACE 'urn:fault.enterprise.soap.sforce.com';
+DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+DECLARE xsi 	NAMESPACE 'http://www.w3.org/2001/XMLSchema-instance';
+
+-- Declare UDPs
+DECLARE SalesforceUserId 	EXTERNAL CHARACTER '';
+DECLARE SalesforcePassword 	EXTERNAL CHARACTER '';
+
+CREATE COMPUTE MODULE SalesforceWebserviceInvocation_PrepareLoginService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET Environment.Variables.Login.Properties = InputRoot.Properties;
+		
+		CREATE LASTCHILD OF Environment.Variables DOMAIN 'XMLNSC' NAME 'InputData';
+		SET Environment.Variables.InputData = InputRoot.XMLNSC;
+		
+		SET OutputRoot.XMLNSC.soapenv:Envelope.(XMLNSC.NamespaceDecl)xmlns:soapenv = soapenv;
+		SET OutputRoot.XMLNSC.soapenv:Envelope.(XMLNSC.NamespaceDecl)xmlns:urn = urn;
+
+		SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.urn:login.urn:username = SalesforceUserId;
+		SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.urn:login.urn:password = SalesforcePassword;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,43 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_ProcessCreateResponse
+** Description: This compute module processes Salesforce "create" response message and
+** prepares target response message.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_ProcessCreateResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = Environment.Variables.Properties;
+		SET OutputRoot.MQMD = Environment.Variables.MQMD;
+		
+		CREATE FIRSTCHILD OF OutputRoot.XMLNSC TYPE XMLNSC.XmlDeclaration NAME 'XmlDeclaration';		
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Version = '1.0';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Encoding = 'UTF-8';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)StandAlone = 'yes';
+		
+		SET OutputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)type = Environment.Variables.Salesforce.ObjectType;
+		SET OutputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)operation = Environment.Variables.Salesforce.Operation;
+		CREATE FIELD OutputRoot.XMLNSC.Salesforce.Object.Records;
+		
+		DECLARE CreateResponseRef REFERENCE TO InputRoot.XMLNSC.urn:createResponse.urn:result[1];
+		DECLARE RecordRef REFERENCE TO OutputRoot;
+		
+		WHILE LASTMOVE(CreateResponseRef) DO
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.Salesforce.Object.Records AS RecordRef NAME 'Record';
+			
+			IF CreateResponseRef.urn:success THEN
+				SET RecordRef.Status = 'Success';
+				SET RecordRef.Id = CreateResponseRef.urn:id;
+			ELSE
+				SET RecordRef.Status = 'Error';
+				SET RecordRef.Error.ErrorCode = CreateResponseRef.urn:errors.urn:statusCode;
+				SET RecordRef.Error.ErrorMessage = CreateResponseRef.urn:errors.urn:message;
+			END IF;
+			
+			MOVE CreateResponseRef NEXTSIBLING REPEAT TYPE NAME;
+		END WHILE;		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

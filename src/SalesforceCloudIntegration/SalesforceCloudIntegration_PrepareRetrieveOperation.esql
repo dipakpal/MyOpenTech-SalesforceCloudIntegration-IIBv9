@@ -1,0 +1,54 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_PrepareRetrieveOperation
+** Description: This compute module prepares Salesforce XML message (without SOAP Envelope)
+** for "retrieve" operation.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_PrepareRetrieveOperation
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.Variables.Properties = InputRoot.Properties;
+		SET Environment.Variables.MQMD = InputRoot.MQMD;
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		SET Environment.Variables.Salesforce.Operation = 'retrieve';
+		SET Environment.Variables.Salesforce.ObjectType = InputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)type;
+		CREATE FIELD Environment.Variables.Salesforce.Fields;
+
+		DECLARE FieldList CHARACTER '';
+		DECLARE FirstField BOOLEAN TRUE;
+		DECLARE FieldElementValue CHARACTER '';
+		
+		DECLARE FieldRef  REFERENCE TO InputRoot.XMLNSC.Salesforce.Object.Fields.Field[1];
+		WHILE LASTMOVE (FieldRef) DO
+			SET FieldElementValue = TRIM(COALESCE(FIELDVALUE(FieldRef), ''));
+			
+			IF FieldElementValue <> '' THEN
+				IF FirstField THEN
+					SET FirstField = FALSE;
+					SET FieldList = FieldElementValue;
+				ELSE
+					SET FieldList = FieldList || ', ' || FieldElementValue;
+				END IF;
+				CREATE LASTCHILD OF Environment.Variables.Salesforce.Fields NAME 'Field' VALUE FieldElementValue;
+			END IF;
+			
+			MOVE FieldRef NEXTSIBLING;
+		END WHILE;	
+		
+		SET OutputRoot.XMLNSC.urn:retrieve.(XMLNSC.NamespaceDecl)xmlns:urn = urn;
+		
+		SET OutputRoot.XMLNSC.urn:retrieve.urn:fieldList = FieldList;
+		SET OutputRoot.XMLNSC.urn:retrieve.urn:sObjectType = FIELDVALUE(InputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)type);		
+		
+		DECLARE RecordRef REFERENCE TO InputRoot.XMLNSC.Salesforce.Object.Records.Record[1];		
+		WHILE LASTMOVE (RecordRef) DO
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.urn:retrieve NAME 'urn:ids' VALUE RecordRef.Id;
+			
+			MOVE RecordRef NEXTSIBLING;
+		END WHILE;		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

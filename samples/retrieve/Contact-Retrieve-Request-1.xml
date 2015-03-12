@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Salesforce>
+   <Object type="Contact" operation="retrieve">
+      <Records>
+         <Record>
+            <Id>003F000001SBki3IAD</Id>
+         </Record>
+         <Record>
+            <Id>00QF000000bsB2gMAE</Id>
+         </Record>
+         <Record>
+            <Id>003F000001SBki5IAD</Id>
+         </Record>
+      </Records>
+      <Fields>
+         <Field>Title</Field>
+         <Field>Name</Field>
+         <Field>Account.Id</Field>
+         <Field>Account.Name</Field>
+      </Fields>
+   </Object>
+</Salesforce>

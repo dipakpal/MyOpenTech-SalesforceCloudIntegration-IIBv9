@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Salesforce>
+   <Object type="Lead" operation="delete">
+      <Records>
+         <Record>
+            <Id>00QF000000btnoTMAQ</Id>
+         </Record>
+         <Record>
+            <Id>00QF000000btnoUMAQ</Id>
+         </Record>
+         <Record>
+            <Id>00QF000000btnoUXXX</Id>
+         </Record>
+      </Records>
+   </Object>
+</Salesforce>

@@ -1,0 +1,33 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceWebserviceInvocation_ReThrowException
+** Description: This compute module processes the exception tree and re-throw the exception
+** as a new user exception.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceWebserviceInvocation_ReThrowException
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE vMessageNumber INTEGER;
+		DECLARE vMessageText CHARACTER;
+		
+		CALL GetLastExceptionDetail(InputExceptionList, vMessageNumber, vMessageText);
+		
+		THROW USER EXCEPTION CATALOG 'Salesforce' MESSAGE vMessageNumber VALUES(vMessageText);
+	END;
+	
+	CREATE PROCEDURE GetLastExceptionDetail(IN InputTree REFERENCE, OUT messageNumber INTEGER, OUT messageText CHARACTER)
+	BEGIN
+		DECLARE ptrException REFERENCE to InputTree.*[1];
+		
+		WHILE LASTMOVE(ptrException) DO
+			IF ptrException.Number IS NOT NULL THEN
+				SET messageNumber = ptrException.Number;
+				SET messageText = COALESCE(ptrException.Text, '') || ': ' || COALESCE(ptrException.Insert.Text, '');
+			END IF;
+			
+			MOVE ptrException LASTCHILD;
+		END WHILE; 
+	END;
+	
+END MODULE;

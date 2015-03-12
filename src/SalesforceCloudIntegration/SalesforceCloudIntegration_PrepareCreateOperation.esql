@@ -1,0 +1,36 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_PrepareCreateOperation
+** Description: This compute module prepares Salesforce XML message (without SOAP Envelope)
+** for "create" operation.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_PrepareCreateOperation
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN		
+		SET Environment.Variables.Properties = InputRoot.Properties;
+		SET Environment.Variables.MQMD = InputRoot.MQMD;
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		SET Environment.Variables.Salesforce.Operation = 'create';
+		SET Environment.Variables.Salesforce.ObjectType = InputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)type;
+		
+		DECLARE RecordRef REFERENCE TO InputRoot.XMLNSC.Salesforce.Object.Records.Record[1];
+		
+		SET OutputRoot.XMLNSC.urn:create.(XMLNSC.NamespaceDecl)xmlns:urn = urn;
+		SET OutputRoot.XMLNSC.urn:create.(XMLNSC.NamespaceDecl)xmlns:urn1 = urn1;
+		
+		DECLARE sObjectsRef REFERENCE TO OutputRoot;
+		
+		WHILE LASTMOVE (RecordRef) DO
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.urn:create AS sObjectsRef NAME 'urn:sObjects';
+			
+			SET sObjectsRef.*[] = RecordRef.*[];
+			SET sObjectsRef.(XMLNSC.Attribute)xsi:type = 'urn1:' || InputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)type;
+			
+			MOVE RecordRef NEXTSIBLING;
+		END WHILE;		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

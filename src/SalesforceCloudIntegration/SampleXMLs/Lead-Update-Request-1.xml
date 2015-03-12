@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Salesforce>
+   <Object type="Lead" operation="update">
+      <Records>
+         <Record>
+            <Id>00QF000000btnoTMAQ</Id>
+            <Title>Software Engineer</Title>
+            <Company>Microsoft</Company>
+            <Email>email1@microsoft.com</Email>
+            <Status>Working - Contacted</Status>
+         </Record>
+         <Record>
+            <Id>00QF000000btnoUMAQ</Id>
+            <Title>Software Engineer</Title>
+            <Company>Microsoft</Company>
+            <Street>12 New Orchard Road</Street>
+            <City>Armonk</City>
+            <State>New York</State>
+            <PostalCode>10504</PostalCode>
+            <Country>United States</Country>
+            <MobilePhone>333-222-1234</MobilePhone>
+            <Email>email2@microsoft.com</Email>
+            <Status>Working - Contacted</Status>
+         </Record>
+         <Record>
+            <Id>00QF000000aE3U1MAK</Id>
+            <Title>Software Engineer</Title>
+            <Company>Microsoft</Company>
+            <Street>13 New Orchard Road</Street>
+            <City>Armonk</City>
+            <State>New York</State>
+            <PostalCode>10504</PostalCode>
+            <Country>United States</Country>
+            <MobilePhone>999-222-1234</MobilePhone>
+            <Email>email3@microsoft.com</Email>
+            <Status>Working - Contacted</Status>
+         </Record>
+      </Records>
+   </Object>
+</Salesforce>

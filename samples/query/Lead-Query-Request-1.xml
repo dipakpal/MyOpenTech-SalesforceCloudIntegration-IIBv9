@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Salesforce>
+   <Object operation="query">
+      <Query>select Id, Salutation, FirstName, LastName, Company, Street, City, State, PostalCode, Country from Lead where Company = 'IBM'</Query>
+   </Object>
+</Salesforce>

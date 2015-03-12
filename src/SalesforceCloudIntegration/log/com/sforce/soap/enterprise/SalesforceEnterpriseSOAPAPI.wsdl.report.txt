@@ -1,0 +1,242 @@
+
+
+Importing file: C:\Dipak\Work\SalesforceCloudIntegration\SalesforceEnterpriseSOAPAPI.wsdl
+
+Copying source WSDL SalesforceEnterpriseSOAPAPI.wsdl to SalesforceEnterpriseSOAPAPI.wsdl.
+The WSDL import will proceed with bindings SoapBinding.
+Creating wsdl schema document for file:///C:/Dipak/Work/SalesforceCloudIntegration/SalesforceEnterpriseSOAPAPI.wsdl.
+Parsing wsdl binding {urn:enterprise.soap.sforce.com}SoapBinding.
+Parsing wsdl binding input login.
+Parsing wsdl binding output login.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault LoginFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeSObject.
+Parsing wsdl binding output describeSObject.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeSObjects.
+Parsing wsdl binding output describeSObjects.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeGlobal.
+Parsing wsdl binding output describeGlobal.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeDataCategoryGroups.
+Parsing wsdl binding output describeDataCategoryGroups.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeDataCategoryGroupStructures.
+Parsing wsdl binding output describeDataCategoryGroupStructures.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeFlexiPages.
+Parsing wsdl binding output describeFlexiPages.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeAppMenu.
+Parsing wsdl binding output describeAppMenu.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeGlobalTheme.
+Parsing wsdl binding output describeGlobalTheme.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeTheme.
+Parsing wsdl binding output describeTheme.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeLayout.
+Parsing wsdl binding output describeLayout.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeSoftphoneLayout.
+Parsing wsdl binding output describeSoftphoneLayout.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeSearchLayouts.
+Parsing wsdl binding output describeSearchLayouts.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input describeSearchScopeOrder.
+Parsing wsdl binding output describeSearchScopeOrder.
+Parsing wsdl binding input describeCompactLayouts.
+Parsing wsdl binding output describeCompactLayouts.
+Parsing wsdl binding input describeApprovalLayout.
+Parsing wsdl binding output describeApprovalLayout.
+Parsing wsdl binding input describeTabs.
+Parsing wsdl binding output describeTabs.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input create.
+Parsing wsdl binding output create.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input update.
+Parsing wsdl binding output update.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input upsert.
+Parsing wsdl binding output upsert.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input merge.
+Parsing wsdl binding output merge.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input delete.
+Parsing wsdl binding output delete.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input undelete.
+Parsing wsdl binding output undelete.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input emptyRecycleBin.
+Parsing wsdl binding output emptyRecycleBin.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input retrieve.
+Parsing wsdl binding output retrieve.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault MalformedQueryFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input process.
+Parsing wsdl binding output process.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input convertLead.
+Parsing wsdl binding output convertLead.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input logout.
+Parsing wsdl binding output logout.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input invalidateSessions.
+Parsing wsdl binding output invalidateSessions.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input getDeleted.
+Parsing wsdl binding output getDeleted.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input getUpdated.
+Parsing wsdl binding output getUpdated.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input query.
+Parsing wsdl binding output query.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault MalformedQueryFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidQueryLocatorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input queryAll.
+Parsing wsdl binding output queryAll.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault MalformedQueryFault.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidQueryLocatorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input queryMore.
+Parsing wsdl binding output queryMore.
+Parsing wsdl binding fault MalformedQueryFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidQueryLocatorFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input search.
+Parsing wsdl binding output search.
+Parsing wsdl binding fault InvalidSObjectFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault MalformedSearchFault.
+Parsing wsdl binding fault InvalidFieldFault.
+Parsing wsdl binding input getServerTimestamp.
+Parsing wsdl binding output getServerTimestamp.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input setPassword.
+Parsing wsdl binding output setPassword.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding fault InvalidNewPasswordFault.
+Parsing wsdl binding input resetPassword.
+Parsing wsdl binding output resetPassword.
+Parsing wsdl binding fault InvalidIdFault.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input getUserInfo.
+Parsing wsdl binding output getUserInfo.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input sendEmailMessage.
+Parsing wsdl binding output sendEmailMessage.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input sendEmail.
+Parsing wsdl binding output sendEmail.
+Parsing wsdl binding fault UnexpectedErrorFault.
+Parsing wsdl binding input performQuickActions.
+Parsing wsdl binding output performQuickActions.
+Parsing wsdl binding input describeQuickActions.
+Parsing wsdl binding output describeQuickActions.
+Parsing wsdl binding input describeAvailableQuickActions.
+Parsing wsdl binding output describeAvailableQuickActions.
+Parsing wsdl binding input retrieveQuickActionTemplates.
+Parsing wsdl binding output retrieveQuickActionTemplates.
+Processing doc style for operation login.
+Processing doc style for operation describeSObject.
+Processing doc style for operation describeSObjects.
+Processing doc style for operation describeGlobal.
+Processing doc style for operation describeDataCategoryGroups.
+Processing doc style for operation describeDataCategoryGroupStructures.
+Processing doc style for operation describeFlexiPages.
+Processing doc style for operation describeAppMenu.
+Processing doc style for operation describeGlobalTheme.
+Processing doc style for operation describeTheme.
+Processing doc style for operation describeLayout.
+Processing doc style for operation describeSoftphoneLayout.
+Processing doc style for operation describeSearchLayouts.
+Processing doc style for operation describeSearchScopeOrder.
+Processing doc style for operation describeCompactLayouts.
+Processing doc style for operation describeApprovalLayout.
+Processing doc style for operation describeTabs.
+Processing doc style for operation create.
+Processing doc style for operation update.
+Processing doc style for operation upsert.
+Processing doc style for operation merge.
+Processing doc style for operation delete.
+Processing doc style for operation undelete.
+Processing doc style for operation emptyRecycleBin.
+Processing doc style for operation retrieve.
+Processing doc style for operation process.
+Processing doc style for operation convertLead.
+Processing doc style for operation logout.
+Processing doc style for operation invalidateSessions.
+Processing doc style for operation getDeleted.
+Processing doc style for operation getUpdated.
+Processing doc style for operation query.
+Processing doc style for operation queryAll.
+Processing doc style for operation queryMore.
+Processing doc style for operation search.
+Processing doc style for operation getServerTimestamp.
+Processing doc style for operation setPassword.
+Processing doc style for operation resetPassword.
+Processing doc style for operation getUserInfo.
+Processing doc style for operation sendEmailMessage.
+Processing doc style for operation sendEmail.
+Processing doc style for operation performQuickActions.
+Processing doc style for operation describeQuickActions.
+Processing doc style for operation describeAvailableQuickActions.
+Processing doc style for operation retrieveQuickActionTemplates.
+Populating WSDL schema SalesforceMessageModel/SalesforceEnterpriseSOAPAPI.xsd.
+Creating file SalesforceMessageModel/SalesforceEnterpriseSOAPAPI.xsd in the workspace.
+Creating file SalesforceMessageModel/SalesforceEnterpriseSOAPAPI_InlineSchema1.xsd in the workspace.
+Creating file SalesforceMessageModel/SalesforceEnterpriseSOAPAPI_InlineSchema2.xsd in the workspace.
+Creating file /SalesforceCloudIntegration/SalesforceEnterpriseSOAPAPI_InlineSchema3.xsd in the workspace.
+
+Elapsed time processing this message definition file: 15.908 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Salesforce>
+   <Object type="Lead" operation="create">
+      <Records>
+         <Record>
+            <Status>Success</Status>
+            <Id>00QF000000btnoTMAQ</Id>
+         </Record>
+         <Record>
+            <Status>Success</Status>
+            <Id>00QF000000btnoUMAQ</Id>
+         </Record>
+         <Record>
+            <Status>Success</Status>
+            <Id>00QF000000btnoVMAQ</Id>
+         </Record>
+      </Records>
+   </Object>
+</Salesforce>

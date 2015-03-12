@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Salesforce>
+   <Object type="Lead" operation="retrieve">
+      <Records>
+         <Record>
+            <Id>00QF000000btnoTMAQ</Id>
+         </Record>
+         <Record>
+            <Id>00QF000000btnoUMAQ</Id>
+         </Record>
+         <Record>
+            <Id>00QF000000btnoVMAQ</Id>
+         </Record>
+      </Records>
+      <Fields>
+         <Field>Id</Field>
+         <Field>Salutation</Field>
+         <Field>FirstName</Field>
+         <Field>LastName</Field>
+         <Field>Company</Field>
+      </Fields>
+   </Object>
+</Salesforce>

@@ -1,0 +1,32 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceWebserviceInvocation_ProcessSOAPFault
+** Description: This compute module processes the SOAP Fault response from Salesforce, extracts
+** error details and throw an user exception.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceWebserviceInvocation_ProcessSOAPFault
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.Variables.Fault.FaultCode = InputRoot.SOAP.*:Body.*:Fault.*:faultcode;
+		SET Environment.Variables.Fault.FaultString = InputRoot.SOAP.*:Body.*:Fault.*:faultstring;
+		
+		SET Environment.Variables.Fault.Detail.ExceptionCode = InputRoot.SOAP.*:Body.*:Fault.*:detail.*:*[1].*:exceptionCode;
+		SET Environment.Variables.Fault.Detail.ExceptionMessage = InputRoot.SOAP.*:Body.*:Fault.*:detail.*:*[1].*:exceptionMessage;
+		
+		DECLARE vErrorMessage CHARACTER ''; 
+		SET vErrorMessage = Environment.Variables.Fault.FaultCode;
+		
+		IF COALESCE(Environment.Variables.Fault.Detail.ExceptionCode, '') <> '' THEN
+			SET vErrorMessage = Environment.Variables.Fault.Detail.ExceptionCode;
+		END IF;
+		
+		IF COALESCE(Environment.Variables.Fault.Detail.ExceptionMessage, '') <> '' THEN
+			SET vErrorMessage = vErrorMessage || ': ' || Environment.Variables.Fault.Detail.ExceptionMessage;
+		ELSE
+			SET vErrorMessage = vErrorMessage || ': ' || Environment.Variables.Fault.FaultString;
+		END IF;
+		
+		THROW USER EXCEPTION CATALOG 'Salesforce' MESSAGE 1001 VALUES(vErrorMessage);
+	END;
+END MODULE;

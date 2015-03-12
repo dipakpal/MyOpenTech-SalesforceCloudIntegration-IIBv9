@@ -1,0 +1,22 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_PrepareQueryOperation
+** Description: This compute module prepares Salesforce XML message (without SOAP Envelope)
+** for "query" operation.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_PrepareQueryOperation
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		SET Environment.Variables.Properties = InputRoot.Properties;
+		SET Environment.Variables.MQMD = InputRoot.MQMD;		
+		SET Environment.Variables.Salesforce.Operation = 'query';
+		
+		SET OutputRoot.XMLNSC.urn:query.(XMLNSC.NamespaceDecl)xmlns:urn = urn;
+		SET OutputRoot.XMLNSC.urn:query.urn:queryString = InputRoot.XMLNSC.Salesforce.Object.Query;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

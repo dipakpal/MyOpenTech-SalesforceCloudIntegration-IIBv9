@@ -1,0 +1,2297 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+Salesforce.com Enterprise Web Services API Version 30.0
+Generated on 2014-05-22 18:21:49 +0000.
+
+Copyright 1999-2014 salesforce.com, inc.
+All Rights Reserved
+--><schema elementFormDefault="qualified" targetNamespace="urn:enterprise.soap.sforce.com" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.enterprise.soap.sforce.com" xmlns:fns="urn:fault.enterprise.soap.sforce.com" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:enterprise.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+            
+            <!-- Our simple ID Type -->
+            
+            <!-- Compound datatype: Address -->
+            
+            <!-- Compound datatype: Location -->
+            
+            
+            
+            <!-- Shared Result Types -->
+            
+
+
+            <!-- Search Result -->
+            
+            
+            <!-- GetUpdated Result -->
+            
+            <!-- GetDeleted Result -->
+            
+            
+
+            
+
+            <!-- InvalidateSessions Result -->
+            
+            
+            
+            
+            
+
+            
+
+            
+            
+            
+            
+
+            
+
+            
+
+            
+            
+            
+            
+            
+
+            
+
+            
+
+            
+            
+
+
+            
+
+
+
+            
+
+
+
+
+            
+            
+            
+            
+            
+            
+            <!-- this is a subset of properties for each SObject that is returned by the describeGlobal call -->
+            
+            
+            
+
+            
+
+        
+            
+            
+            
+            
+            
+            
+            
+
+
+
+            
+            
+            
+            
+
+            
+            
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+
+            
+            
+
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+             
+            
+
+            
+            
+            
+
+
+                        
+            
+            
+            
+            
+
+
+
+        
+                    
+
+                
+
+
+
+            
+
+            
+            
+
+        
+
+
+        
+
+
+
+
+
+
+            <!-- Login Message Types -->
+                        
+            <!-- Describe Message Types -->
+                        
+            <!-- DescibeSObjects Message Types -->
+                        
+            <!-- Describe Global Message Types -->
+                        
+
+        <!-- Describe Global Theme Types -->
+                
+        <!-- Describe Theme Types -->
+                
+
+        <!-- Describe Data Category Groups Message Types -->
+                                                
+
+
+
+
+                        
+
+
+            
+
+                        
+
+
+                        
+
+                        
+
+                        
+                        
+
+
+
+                        
+
+
+                        
+
+                        
+            <!-- Create Message Types -->
+                        
+
+
+            <!-- Send Email Types -->
+                        
+            <!-- Send Email Message Types -->
+                        
+
+            <!-- Update Message Types -->
+                        
+            <!-- Upsert Message Types -->
+                        
+            <!-- Merge Message Types -->
+                        
+            <!-- Delete Message Types -->
+                        
+            <!-- Undelete Message Types -->
+                        
+            <!-- EmptyRecycleBin Message Types -->
+                        
+            <!-- Process Message Types -->
+                        
+
+            <!-- Perform Action Message Types -->
+                        
+
+                        
+                        
+                        
+
+
+            <!-- Retrieve (ID List) Message Types -->
+                        
+            <!-- Convert Lead Message Types -->
+                        
+            <!-- Get Updated Message Types -->
+                        
+            <!-- Get Deleted Message Types -->
+                        
+
+            <!-- Logout current session -->
+            
+            
+            <!-- Invalidate a list of session ids -->
+            
+            
+            <!-- Create Query -->
+                        
+            <!-- Create Query All -->
+                        
+            <!-- Next Batch of sObjects from a query -->
+                        
+
+
+            <!-- Create Search -->
+                        
+
+
+                        
+                        
+                        
+                        
+
+
+            <!-- Header Elements -->
+            
+            
+
+
+            
+
+                                    
+      
+            
+
+            
+
+
+            
+
+
+        
+
+
+        
+        
+
+
+
+
+
+            <!-- ideally this could of just been elem name="..." type="xsd:boolean"
+                 but is required to be nested within a complexType for .NET 1.1 compatibility -->
+	
+	
+	
+            
+
+
+            
+        
+                    <import namespace="urn:sobject.enterprise.soap.sforce.com" schemaLocation="SalesforceEnterpriseSOAPAPI_InlineSchema1.xsd"/>
+            <simpleType name="ID">
+                <restriction base="string">
+                    <length value="18"/>
+                    <pattern value="[a-zA-Z0-9]{18}"/>
+                </restriction>
+            </simpleType>
+            <complexType name="address">
+                <complexContent>
+                    <extension base="tns:location">
+                        <sequence>
+                            <element name="city" nillable="true" type="string"/>
+                            <element name="country" nillable="true" type="string"/>
+                            <element name="countryCode" nillable="true" type="string"/>
+                            <element name="postalCode" nillable="true" type="string"/>
+                            <element name="state" nillable="true" type="string"/>
+                            <element name="stateCode" nillable="true" type="string"/>
+                            <element name="street" nillable="true" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="location">
+                <sequence>
+                    <element name="latitude" nillable="true" type="double"/>
+                    <element name="longitude" nillable="true" type="double"/>
+                </sequence>
+            </complexType>
+            <simpleType name="QueryLocator">
+                <restriction base="string"/>
+            </simpleType>
+            <complexType name="QueryResult">
+                <sequence>
+                    <element name="done" type="boolean"/>
+                    <element name="queryLocator" nillable="true" type="tns:QueryLocator"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="records" nillable="true" type="ens:sObject"/>
+                    <element name="size" type="int"/>
+                </sequence>
+            </complexType>
+            <complexType name="SearchResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="searchRecords" type="tns:SearchRecord"/>
+                    <element maxOccurs="1" minOccurs="0" name="sforceReserved" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="SearchRecord">
+                <sequence>
+                    <element name="record" type="ens:sObject"/>
+                </sequence>
+            </complexType>
+            <complexType name="GetUpdatedResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="ids" type="tns:ID"/>
+                    <element name="latestDateCovered" type="dateTime"/>
+                    <element maxOccurs="1" minOccurs="0" name="sforceReserved" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="GetDeletedResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="deletedRecords" type="tns:DeletedRecord"/>
+                    <element name="earliestDateAvailable" type="dateTime"/>
+                    <element name="latestDateCovered" type="dateTime"/>
+                    <element maxOccurs="1" minOccurs="0" name="sforceReserved" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DeletedRecord">
+                <sequence>
+                    <element name="deletedDate" type="dateTime"/>
+                    <element name="id" type="tns:ID"/>
+                </sequence>
+            </complexType>
+            <complexType name="GetServerTimestampResult">
+                <sequence>
+                    <element name="timestamp" type="dateTime"/>
+                </sequence>
+            </complexType>
+            <complexType name="InvalidateSessionsResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="SetPasswordResult">
+            </complexType>
+            <complexType name="ResetPasswordResult">
+                <sequence>
+                    <element name="password" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="GetUserInfoResult">
+                <sequence>
+                    <element name="accessibilityMode" type="boolean"/>
+                    <element name="currencySymbol" nillable="true" type="string"/>
+                    <element name="orgAttachmentFileSizeLimit" type="int"/>
+                    <element name="orgDefaultCurrencyIsoCode" nillable="true" type="string"/>
+                    <element name="orgDisallowHtmlAttachments" type="boolean"/>
+                    <element name="orgHasPersonAccounts" type="boolean"/>
+                    <element name="organizationId" type="tns:ID"/>
+                    <element name="organizationMultiCurrency" type="boolean"/>
+                    <element name="organizationName" type="string"/>
+                    <element name="profileId" type="tns:ID"/>
+                    <element name="roleId" nillable="true" type="tns:ID"/>
+                    <element name="sessionSecondsValid" type="int"/>
+                    <element name="userDefaultCurrencyIsoCode" nillable="true" type="string"/>
+                    <element name="userEmail" type="string"/>
+                    <element name="userFullName" type="string"/>
+                    <element name="userId" type="tns:ID"/>
+                    <element name="userLanguage" type="string"/>
+                    <element name="userLocale" type="string"/>
+                    <element name="userName" type="string"/>
+                    <element name="userTimeZone" type="string"/>
+                    <element name="userType" type="string"/>
+                    <element name="userUiSkin" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="LoginResult">
+                <sequence>
+                    <element name="metadataServerUrl" nillable="true" type="string"/>
+                    <element name="passwordExpired" type="boolean"/>
+                    <element name="sandbox" type="boolean"/>
+                    <element name="serverUrl" nillable="true" type="string"/>
+                    <element name="sessionId" nillable="true" type="string"/>
+
+                    <element name="userId" nillable="true" type="tns:ID"/>
+                    <element minOccurs="0" name="userInfo" type="tns:GetUserInfoResult"/>
+                </sequence>
+            </complexType>
+            <simpleType name="StatusCode">
+                <restriction base="string">
+                    <enumeration value="ALL_OR_NONE_OPERATION_ROLLED_BACK"/>
+                    <enumeration value="ALREADY_IN_PROCESS"/>
+                    <enumeration value="ASSIGNEE_TYPE_REQUIRED"/>
+                    <enumeration value="BAD_CUSTOM_ENTITY_PARENT_DOMAIN"/>
+                    <enumeration value="BCC_NOT_ALLOWED_IF_BCC_COMPLIANCE_ENABLED"/>
+                    <enumeration value="CANNOT_CASCADE_PRODUCT_ACTIVE"/>
+                    <enumeration value="CANNOT_CHANGE_FIELD_TYPE_OF_APEX_REFERENCED_FIELD"/>
+                    <enumeration value="CANNOT_CHANGE_FIELD_TYPE_OF_REFERENCED_FIELD"/>
+                    <enumeration value="CANNOT_CREATE_ANOTHER_MANAGED_PACKAGE"/>
+                    <enumeration value="CANNOT_DEACTIVATE_DIVISION"/>
+                    <enumeration value="CANNOT_DELETE_LAST_DATED_CONVERSION_RATE"/>
+                    <enumeration value="CANNOT_DELETE_MANAGED_OBJECT"/>
+                    <enumeration value="CANNOT_DISABLE_LAST_ADMIN"/>
+                    <enumeration value="CANNOT_ENABLE_IP_RESTRICT_REQUESTS"/>
+                    <enumeration value="CANNOT_EXECUTE_FLOW_TRIGGER"/>
+                    <enumeration value="CANNOT_FREEZE_SELF"/>
+                    <enumeration value="CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY"/>
+                    <enumeration value="CANNOT_MODIFY_MANAGED_OBJECT"/>
+                    <enumeration value="CANNOT_PASSWORD_LOCKOUT"/>
+                    <enumeration value="CANNOT_RENAME_APEX_REFERENCED_FIELD"/>
+                    <enumeration value="CANNOT_RENAME_APEX_REFERENCED_OBJECT"/>
+                    <enumeration value="CANNOT_RENAME_REFERENCED_FIELD"/>
+                    <enumeration value="CANNOT_RENAME_REFERENCED_OBJECT"/>
+                    <enumeration value="CANNOT_REPARENT_RECORD"/>
+                    <enumeration value="CANNOT_UPDATE_CONVERTED_LEAD"/>
+                    <enumeration value="CANT_DISABLE_CORP_CURRENCY"/>
+                    <enumeration value="CANT_UNSET_CORP_CURRENCY"/>
+                    <enumeration value="CHILD_SHARE_FAILS_PARENT"/>
+                    <enumeration value="CIRCULAR_DEPENDENCY"/>
+                    <enumeration value="COLLISION_DETECTED"/>
+                    <enumeration value="COMMUNITY_NOT_ACCESSIBLE"/>
+                    <enumeration value="CUSTOM_APEX_ERROR"/>
+                    <enumeration value="CUSTOM_CLOB_FIELD_LIMIT_EXCEEDED"/>
+                    <enumeration value="CUSTOM_ENTITY_OR_FIELD_LIMIT"/>
+                    <enumeration value="CUSTOM_FIELD_INDEX_LIMIT_EXCEEDED"/>
+                    <enumeration value="CUSTOM_INDEX_EXISTS"/>
+                    <enumeration value="CUSTOM_LINK_LIMIT_EXCEEDED"/>
+                    <enumeration value="CUSTOM_METADATA_LIMIT_EXCEEDED"/>
+                    <enumeration value="CUSTOM_TAB_LIMIT_EXCEEDED"/>
+                    <enumeration value="DELETE_FAILED"/>
+                    <enumeration value="DELETE_OPERATION_TOO_LARGE"/>
+                    <enumeration value="DELETE_REQUIRED_ON_CASCADE"/>
+                    <enumeration value="DEPENDENCY_EXISTS"/>
+                    <enumeration value="DUPLICATES_DETECTED"/>
+                    <enumeration value="DUPLICATE_CASE_SOLUTION"/>
+                    <enumeration value="DUPLICATE_COMM_NICKNAME"/>
+                    <enumeration value="DUPLICATE_CUSTOM_ENTITY_DEFINITION"/>
+                    <enumeration value="DUPLICATE_CUSTOM_TAB_MOTIF"/>
+                    <enumeration value="DUPLICATE_DEVELOPER_NAME"/>
+                    <enumeration value="DUPLICATE_EXTERNAL_ID"/>
+                    <enumeration value="DUPLICATE_MASTER_LABEL"/>
+                    <enumeration value="DUPLICATE_SENDER_DISPLAY_NAME"/>
+                    <enumeration value="DUPLICATE_USERNAME"/>
+                    <enumeration value="DUPLICATE_VALUE"/>
+                    <enumeration value="EMAIL_NOT_PROCESSED_DUE_TO_PRIOR_ERROR"/>
+                    <enumeration value="EMPTY_SCONTROL_FILE_NAME"/>
+                    <enumeration value="ENTITY_FAILED_IFLASTMODIFIED_ON_UPDATE"/>
+                    <enumeration value="ENTITY_IS_ARCHIVED"/>
+                    <enumeration value="ENTITY_IS_DELETED"/>
+                    <enumeration value="ENTITY_IS_LOCKED"/>
+                    <enumeration value="ENVIRONMENT_HUB_MEMBERSHIP_CONFLICT"/>
+                    <enumeration value="ENVIRONMENT_HUB_MEMBERSHIP_ERROR_JOINING_HUB"/>
+                    <enumeration value="ENVIRONMENT_HUB_MEMBERSHIP_USER_ALREADY_IN_HUB"/>
+                    <enumeration value="ENVIRONMENT_HUB_MEMBERSHIP_USER_NOT_ORG_ADMIN"/>
+                    <enumeration value="ERROR_IN_MAILER"/>
+                    <enumeration value="FAILED_ACTIVATION"/>
+                    <enumeration value="FIELD_CUSTOM_VALIDATION_EXCEPTION"/>
+                    <enumeration value="FIELD_FILTER_VALIDATION_EXCEPTION"/>
+                    <enumeration value="FIELD_INTEGRITY_EXCEPTION"/>
+                    <enumeration value="FILTERED_LOOKUP_LIMIT_EXCEEDED"/>
+                    <enumeration value="HTML_FILE_UPLOAD_NOT_ALLOWED"/>
+                    <enumeration value="IMAGE_TOO_LARGE"/>
+                    <enumeration value="INACTIVE_OWNER_OR_USER"/>
+                    <enumeration value="INSUFFICIENT_ACCESS_ON_CROSS_REFERENCE_ENTITY"/>
+                    <enumeration value="INSUFFICIENT_ACCESS_OR_READONLY"/>
+                    <enumeration value="INVALID_ACCESS_LEVEL"/>
+                    <enumeration value="INVALID_ARGUMENT_TYPE"/>
+                    <enumeration value="INVALID_ASSIGNEE_TYPE"/>
+                    <enumeration value="INVALID_ASSIGNMENT_RULE"/>
+                    <enumeration value="INVALID_BATCH_OPERATION"/>
+                    <enumeration value="INVALID_CONTENT_TYPE"/>
+                    <enumeration value="INVALID_CREDIT_CARD_INFO"/>
+                    <enumeration value="INVALID_CROSS_REFERENCE_KEY"/>
+                    <enumeration value="INVALID_CROSS_REFERENCE_TYPE_FOR_FIELD"/>
+                    <enumeration value="INVALID_CURRENCY_CONV_RATE"/>
+                    <enumeration value="INVALID_CURRENCY_CORP_RATE"/>
+                    <enumeration value="INVALID_CURRENCY_ISO"/>
+                    <enumeration value="INVALID_DATA_CATEGORY_GROUP_REFERENCE"/>
+                    <enumeration value="INVALID_DATA_URI"/>
+                    <enumeration value="INVALID_EMAIL_ADDRESS"/>
+                    <enumeration value="INVALID_EMPTY_KEY_OWNER"/>
+                    <enumeration value="INVALID_FIELD"/>
+                    <enumeration value="INVALID_FIELD_FOR_INSERT_UPDATE"/>
+                    <enumeration value="INVALID_FIELD_WHEN_USING_TEMPLATE"/>
+                    <enumeration value="INVALID_FILTER_ACTION"/>
+                    <enumeration value="INVALID_GOOGLE_DOCS_URL"/>
+                    <enumeration value="INVALID_ID_FIELD"/>
+                    <enumeration value="INVALID_INET_ADDRESS"/>
+                    <enumeration value="INVALID_LINEITEM_CLONE_STATE"/>
+                    <enumeration value="INVALID_MASTER_OR_TRANSLATED_SOLUTION"/>
+                    <enumeration value="INVALID_MESSAGE_ID_REFERENCE"/>
+                    <enumeration value="INVALID_OAUTH_URL"/>
+                    <enumeration value="INVALID_OPERATION"/>
+                    <enumeration value="INVALID_OPERATOR"/>
+                    <enumeration value="INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST"/>
+                    <enumeration value="INVALID_OWNER"/>
+                    <enumeration value="INVALID_PACKAGE_VERSION"/>
+                    <enumeration value="INVALID_PARTNER_NETWORK_STATUS"/>
+                    <enumeration value="INVALID_PERSON_ACCOUNT_OPERATION"/>
+                    <enumeration value="INVALID_QUERY_LOCATOR"/>
+                    <enumeration value="INVALID_READ_ONLY_USER_DML"/>
+                    <enumeration value="INVALID_SAVE_AS_ACTIVITY_FLAG"/>
+                    <enumeration value="INVALID_SESSION_ID"/>
+                    <enumeration value="INVALID_SETUP_OWNER"/>
+                    <enumeration value="INVALID_SIGNUP_COUNTRY"/>
+                    <enumeration value="INVALID_SITE_DELETE_EXCEPTION"/>
+                    <enumeration value="INVALID_SITE_FILE_IMPORTED_EXCEPTION"/>
+                    <enumeration value="INVALID_SITE_FILE_TYPE_EXCEPTION"/>
+                    <enumeration value="INVALID_STATUS"/>
+                    <enumeration value="INVALID_SUBDOMAIN"/>
+                    <enumeration value="INVALID_TYPE"/>
+                    <enumeration value="INVALID_TYPE_FOR_OPERATION"/>
+                    <enumeration value="INVALID_TYPE_ON_FIELD_IN_RECORD"/>
+                    <enumeration value="IP_RANGE_LIMIT_EXCEEDED"/>
+                    <enumeration value="JIGSAW_IMPORT_LIMIT_EXCEEDED"/>
+                    <enumeration value="LICENSE_LIMIT_EXCEEDED"/>
+                    <enumeration value="LIGHT_PORTAL_USER_EXCEPTION"/>
+                    <enumeration value="LIMIT_EXCEEDED"/>
+                    <enumeration value="MALFORMED_ID"/>
+                    <enumeration value="MANAGER_NOT_DEFINED"/>
+                    <enumeration value="MASSMAIL_RETRY_LIMIT_EXCEEDED"/>
+                    <enumeration value="MASS_MAIL_LIMIT_EXCEEDED"/>
+                    <enumeration value="MATCH_DEFINITION_ERROR"/>
+                    <enumeration value="MATCH_OPERATION_ERROR"/>
+                    <enumeration value="MATCH_OPERATION_INVALID_ENGINE_ERROR"/>
+                    <enumeration value="MATCH_OPERATION_UNKNOWN_ENGINE_ERROR"/>
+                    <enumeration value="MATCH_OPERATION_UNKNOWN_RULE_ERROR"/>
+                    <enumeration value="MATCH_RUNTIME_ERROR"/>
+                    <enumeration value="MAXIMUM_CCEMAILS_EXCEEDED"/>
+                    <enumeration value="MAXIMUM_DASHBOARD_COMPONENTS_EXCEEDED"/>
+                    <enumeration value="MAXIMUM_HIERARCHY_LEVELS_REACHED"/>
+                    <enumeration value="MAXIMUM_SIZE_OF_ATTACHMENT"/>
+                    <enumeration value="MAXIMUM_SIZE_OF_DOCUMENT"/>
+                    <enumeration value="MAX_ACTIONS_PER_RULE_EXCEEDED"/>
+                    <enumeration value="MAX_ACTIVE_RULES_EXCEEDED"/>
+                    <enumeration value="MAX_APPROVAL_STEPS_EXCEEDED"/>
+                    <enumeration value="MAX_FORMULAS_PER_RULE_EXCEEDED"/>
+                    <enumeration value="MAX_RULES_EXCEEDED"/>
+                    <enumeration value="MAX_RULE_ENTRIES_EXCEEDED"/>
+                    <enumeration value="MAX_TASK_DESCRIPTION_EXCEEEDED"/>
+                    <enumeration value="MAX_TM_RULES_EXCEEDED"/>
+                    <enumeration value="MAX_TM_RULE_ITEMS_EXCEEDED"/>
+                    <enumeration value="MERGE_FAILED"/>
+                    <enumeration value="MISSING_ARGUMENT"/>
+                    <enumeration value="MIXED_DML_OPERATION"/>
+                    <enumeration value="NONUNIQUE_SHIPPING_ADDRESS"/>
+                    <enumeration value="NO_APPLICABLE_PROCESS"/>
+                    <enumeration value="NO_ATTACHMENT_PERMISSION"/>
+                    <enumeration value="NO_INACTIVE_DIVISION_MEMBERS"/>
+                    <enumeration value="NO_MASS_MAIL_PERMISSION"/>
+                    <enumeration value="NO_SUCH_USER_EXISTS"/>
+                    <enumeration value="NUMBER_OUTSIDE_VALID_RANGE"/>
+                    <enumeration value="NUM_HISTORY_FIELDS_BY_SOBJECT_EXCEEDED"/>
+                    <enumeration value="OPTED_OUT_OF_MASS_MAIL"/>
+                    <enumeration value="OP_WITH_INVALID_USER_TYPE_EXCEPTION"/>
+                    <enumeration value="PACKAGE_LICENSE_REQUIRED"/>
+                    <enumeration value="PACKAGING_API_INSTALL_FAILED"/>
+                    <enumeration value="PACKAGING_API_UNINSTALL_FAILED"/>
+                    <enumeration value="PORTAL_NO_ACCESS"/>
+                    <enumeration value="PORTAL_USER_ALREADY_EXISTS_FOR_CONTACT"/>
+                    <enumeration value="PRIVATE_CONTACT_ON_ASSET"/>
+                    <enumeration value="QUERY_TIMEOUT"/>
+                    <enumeration value="RECORD_IN_USE_BY_WORKFLOW"/>
+                    <enumeration value="REQUEST_RUNNING_TOO_LONG"/>
+                    <enumeration value="REQUIRED_FEATURE_MISSING"/>
+                    <enumeration value="REQUIRED_FIELD_MISSING"/>
+                    <enumeration value="SELF_REFERENCE_FROM_FLOW"/>
+                    <enumeration value="SELF_REFERENCE_FROM_TRIGGER"/>
+                    <enumeration value="SHARE_NEEDED_FOR_CHILD_OWNER"/>
+                    <enumeration value="SINGLE_EMAIL_LIMIT_EXCEEDED"/>
+                    <enumeration value="STANDARD_PRICE_NOT_DEFINED"/>
+                    <enumeration value="STORAGE_LIMIT_EXCEEDED"/>
+                    <enumeration value="STRING_TOO_LONG"/>
+                    <enumeration value="SUBDOMAIN_IN_USE"/>
+                    <enumeration value="TABSET_LIMIT_EXCEEDED"/>
+                    <enumeration value="TEMPLATE_NOT_ACTIVE"/>
+                    <enumeration value="TEMPLATE_NOT_FOUND"/>
+                    <enumeration value="TERRITORY_REALIGN_IN_PROGRESS"/>
+                    <enumeration value="TEXT_DATA_OUTSIDE_SUPPORTED_CHARSET"/>
+                    <enumeration value="TOO_MANY_APEX_REQUESTS"/>
+                    <enumeration value="TOO_MANY_ENUM_VALUE"/>
+                    <enumeration value="TOO_MANY_POSSIBLE_USERS_EXIST"/>
+                    <enumeration value="TRANSFER_REQUIRES_READ"/>
+                    <enumeration value="UNABLE_TO_LOCK_ROW"/>
+                    <enumeration value="UNAVAILABLE_RECORDTYPE_EXCEPTION"/>
+                    <enumeration value="UNDELETE_FAILED"/>
+                    <enumeration value="UNKNOWN_EXCEPTION"/>
+                    <enumeration value="UNSPECIFIED_EMAIL_ADDRESS"/>
+                    <enumeration value="UNSUPPORTED_APEX_TRIGGER_OPERATON"/>
+                    <enumeration value="UNVERIFIED_SENDER_ADDRESS"/>
+                    <enumeration value="USER_OWNS_PORTAL_ACCOUNT_EXCEPTION"/>
+                    <enumeration value="USER_WITH_APEX_SHARES_EXCEPTION"/>
+                    <enumeration value="WEBLINK_SIZE_LIMIT_EXCEEDED"/>
+                    <enumeration value="WEBLINK_URL_INVALID"/>
+                    <enumeration value="WRONG_CONTROLLER_TYPE"/>
+                </restriction>
+            </simpleType>
+            <complexType name="Error">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="fields" nillable="true" type="string"/>
+                    <element name="message" type="string"/>
+                    <element name="statusCode" type="tns:StatusCode"/>
+                </sequence>
+            </complexType>
+            <complexType name="SendEmailError">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="fields" nillable="true" type="string"/>
+                    <element name="message" type="string"/>
+                    <element name="statusCode" type="tns:StatusCode"/>
+                    <element name="targetObjectId" nillable="true" type="tns:ID"/>
+                </sequence>
+            </complexType>
+            <complexType name="SaveResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="id" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="UpsertResult">
+                <sequence>
+                    <element name="created" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="id" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="PerformQuickActionResult">
+                <sequence>
+                    <element name="created" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="feedItemIds" nillable="true" type="tns:ID"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="ids" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="QuickActionTemplateResult">
+                <sequence>
+                    <element name="defaultValueFormulas" nillable="true" type="ens:sObject"/>
+                    <element name="defaultValues" nillable="true" type="ens:sObject"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="MergeRequest">
+                <sequence>
+                    <element name="masterRecord" type="ens:sObject"/>
+                    <element maxOccurs="unbounded" minOccurs="1" name="recordToMergeIds" type="tns:ID"/>
+                </sequence>
+            </complexType>
+            <complexType name="MergeResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="id" nillable="true" type="tns:ID"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="mergedRecordIds" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="updatedRelatedIds" type="tns:ID"/>
+                </sequence>
+            </complexType>
+            <complexType name="ProcessRequest">
+                <sequence>
+                    <element name="comments" nillable="true" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="nextApproverIds" nillable="true" type="tns:ID"/>
+                </sequence>
+            </complexType>
+            <complexType name="ProcessSubmitRequest">
+                <complexContent>
+                    <extension base="tns:ProcessRequest">
+                        <sequence>
+                            <element name="objectId" type="tns:ID"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="ProcessWorkitemRequest">
+                <complexContent>
+                    <extension base="tns:ProcessRequest">
+                        <sequence>
+                            <element name="action" type="string"/>
+                            <element name="workitemId" type="tns:ID"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="PerformQuickActionRequest">
+                <sequence>
+                    <element name="contextId" nillable="true" type="tns:ID"/>                    <element name="quickActionName" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="records" nillable="true" type="ens:sObject"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeAvailableQuickActionResult">
+                <sequence>
+                    <element name="label" type="string"/>
+                    <element name="name" type="string"/>
+                    <element name="type" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeQuickActionResult">
+                <sequence>
+                    <element name="accessLevelRequired" nillable="true" type="tns:ShareAccessLevel"/> 
+                    <element name="canvasApplicationName" nillable="true" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="colors" type="tns:DescribeColor"/> 
+					<element name="contextSobjectType" nillable="true" type="string"/> 
+                    <element maxOccurs="unbounded" minOccurs="0" name="defaultValues" nillable="true" type="tns:DescribeQuickActionDefaultValue"/>
+                    <element name="height" nillable="true" type="int"/>
+                    <element name="iconName" nillable="true" type="string"/>
+                    <element name="iconUrl" nillable="true" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="icons" type="tns:DescribeIcon"/>
+                    <element name="label" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="layout" type="tns:DescribeLayoutSection"/>
+                    <element name="miniIconUrl" nillable="true" type="string"/>
+                    <element name="name" type="string"/>
+					                    <element name="targetParentField" nillable="true" type="string"/>
+                    <element name="targetRecordTypeId" nillable="true" type="tns:ID"/>
+                    <element name="targetSobjectType" nillable="true" type="string"/>
+                    <element name="type" type="string"/>
+                    <element name="visualforcePageName" nillable="true" type="string"/>
+                    <element name="width" nillable="true" type="int"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeQuickActionDefaultValue">
+                <sequence>
+                    <element name="defaultValue" nillable="true" type="string"/>
+                    <element name="field" nillable="false" type="string"/>
+                </sequence>
+            </complexType>
+            <simpleType name="ShareAccessLevel">
+                <restriction base="string">
+                    <enumeration value="Read"/>
+                    <enumeration value="Edit"/>
+                    <enumeration value="All"/>
+                </restriction>
+            </simpleType>
+            <complexType name="ProcessResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="actorIds" nillable="false" type="tns:ID"/>
+                    <element name="entityId" nillable="true" type="tns:ID"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="instanceId" nillable="true" type="tns:ID"/>
+                    <element name="instanceStatus" nillable="true" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="newWorkitemIds" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="DeleteResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:Error"/>
+                    <element name="id" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="UndeleteResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="id" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="EmptyRecycleBinResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="id" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="LeadConvert">
+                <sequence>
+                    <element name="accountId" nillable="true" type="tns:ID"/>
+                    <element name="contactId" nillable="true" type="tns:ID"/>
+                    <element name="convertedStatus" type="string"/>
+                    <element name="doNotCreateOpportunity" type="boolean"/>
+                    <element name="leadId" type="tns:ID"/>
+                    <element name="opportunityName" nillable="true" type="string"/>
+                    <element name="overwriteLeadSource" type="boolean"/>
+                    <element name="ownerId" nillable="true" type="tns:ID"/>
+                    <element name="sendNotificationEmail" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="LeadConvertResult">
+                <sequence>
+                    <element name="accountId" nillable="true" type="tns:ID"/>
+                    <element name="contactId" nillable="true" type="tns:ID"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:Error"/>
+                    <element name="leadId" nillable="true" type="tns:ID"/>
+                    <element name="opportunityId" nillable="true" type="tns:ID"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSObjectResult">
+                <sequence>
+                    <element name="activateable" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="childRelationships" type="tns:ChildRelationship"/>
+                    <element name="compactLayoutable" type="boolean"/>
+                    <element name="createable" type="boolean"/>
+                    <element name="custom" type="boolean"/>
+                    <element name="customSetting" type="boolean"/>
+                    <element name="deletable" type="boolean"/>
+                    <element name="deprecatedAndHidden" type="boolean"/>
+                    <element name="feedEnabled" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="fields" nillable="true" type="tns:Field"/>
+                    <element name="keyPrefix" nillable="true" type="string"/>
+                    <element name="label" type="string"/>
+                    <element name="labelPlural" type="string"/>
+                    <element name="layoutable" type="boolean"/>
+                    <element name="mergeable" type="boolean"/>
+                    <element name="name" type="string"/>
+                    <element name="queryable" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="recordTypeInfos" type="tns:RecordTypeInfo"/>
+                    <element name="replicateable" type="boolean"/>
+                    <element name="retrieveable" type="boolean"/>
+
+                    <element minOccurs="0" name="searchLayoutable" type="boolean"/>
+                    <element name="searchable" type="boolean"/>
+                    <element minOccurs="0" name="triggerable" type="boolean"/>
+                    <element name="undeletable" type="boolean"/>
+                    <element name="updateable" type="boolean"/>
+                    <element name="urlDetail" nillable="true" type="string"/>
+                    <element name="urlEdit" nillable="true" type="string"/>
+                    <element name="urlNew" nillable="true" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeGlobalSObjectResult">
+                <sequence>
+                    <element name="activateable" type="boolean"/>
+                    <element name="createable" type="boolean"/>
+                    <element name="custom" type="boolean"/>
+                    <element name="customSetting" type="boolean"/>
+                    <element name="deletable" type="boolean"/>
+                    <element name="deprecatedAndHidden" type="boolean"/>
+                    <element name="feedEnabled" type="boolean"/>
+                    <element name="keyPrefix" nillable="true" type="string"/>
+                    <element name="label" type="string"/>
+                    <element name="labelPlural" type="string"/>
+                    <element name="layoutable" type="boolean"/>
+                    <element name="mergeable" type="boolean"/>
+                    <element name="name" type="string"/>
+                    <element name="queryable" type="boolean"/>
+                    <element name="replicateable" type="boolean"/>
+                    <element name="retrieveable" type="boolean"/>
+                    <element name="searchable" type="boolean"/>
+                    <element name="triggerable" type="boolean"/>
+                    <element name="undeletable" type="boolean"/>
+                    <element name="updateable" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="ChildRelationship">
+                <sequence>
+                    <element name="cascadeDelete" type="boolean"/>
+                    <element name="childSObject" type="string"/>
+                    <element name="deprecatedAndHidden" type="boolean"/>
+                    <element name="field" type="string"/>
+                    <element minOccurs="0" name="relationshipName" type="string"/>
+                    <element minOccurs="0" name="restrictedDelete" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeGlobalResult">
+                <sequence>
+                    <element name="encoding" nillable="true" type="string"/>
+                    <element name="maxBatchSize" type="int"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="sobjects" type="tns:DescribeGlobalSObjectResult"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeGlobalTheme">
+                <sequence>
+                    <element name="global" type="tns:DescribeGlobalResult"/>
+                    <element name="theme" type="tns:DescribeThemeResult"/>
+                </sequence>
+            </complexType>
+            <simpleType name="fieldType">
+                <restriction base="string">
+                    <enumeration value="string"/>
+                    <enumeration value="picklist"/>
+                    <enumeration value="multipicklist"/>
+                    <enumeration value="combobox"/>
+                    <enumeration value="reference"/>
+                    <enumeration value="base64"/>
+                    <enumeration value="boolean"/>
+                    <enumeration value="currency"/>
+                    <enumeration value="textarea"/>
+                    <enumeration value="int"/>
+                    <enumeration value="double"/>
+                    <enumeration value="percent"/>
+                    <enumeration value="phone"/>
+                    <enumeration value="id"/>
+                    <enumeration value="date"/>
+                    <enumeration value="datetime"/>
+                    <enumeration value="time"/>
+                    <enumeration value="url"/>
+                    <enumeration value="email"/>
+                    <enumeration value="encryptedstring"/>
+                    <enumeration value="datacategorygroupreference"/>
+                    <enumeration value="location"/>
+                    <enumeration value="address"/>
+                    <enumeration value="anyType"/> <!-- can be string, picklist, reference, boolean, currency, int, double, percent, id, date, datetime, url, email -->
+                </restriction>
+            </simpleType>
+            <simpleType name="soapType">
+                <restriction base="string">
+                    <enumeration value="tns:ID"/>
+                    <enumeration value="xsd:base64Binary"/>
+                    <enumeration value="xsd:boolean"/>
+                    <enumeration value="xsd:double"/>
+                    <enumeration value="xsd:int"/>
+                    <enumeration value="xsd:string"/>
+                    <enumeration value="xsd:date"/>
+                    <enumeration value="xsd:dateTime"/>
+                    <enumeration value="xsd:time"/>
+                    <enumeration value="urn:location"/>
+                    <enumeration value="urn:address"/>
+                    <enumeration value="xsd:anyType"/> <!-- can be id, booolean, double, int, string, date, dateTime -->
+                </restriction>
+            </simpleType>
+            <complexType name="Field">
+                <sequence>
+                    <element name="autoNumber" type="boolean"/>
+                    <element name="byteLength" type="int"/>
+                    <element name="calculated" type="boolean"/>
+                    <element minOccurs="0" name="calculatedFormula" type="string"/>
+                    <element minOccurs="0" name="cascadeDelete" type="boolean"/>
+                    <element name="caseSensitive" type="boolean"/>
+                    <element minOccurs="0" name="controllerName" type="string"/>
+                    <element name="createable" type="boolean"/>
+                    <element name="custom" type="boolean"/>
+                    <element minOccurs="0" name="defaultValueFormula" type="string"/>
+                    <element name="defaultedOnCreate" type="boolean"/>
+                    <element minOccurs="0" name="dependentPicklist" type="boolean"/>
+                    <element name="deprecatedAndHidden" type="boolean"/>
+                    <element name="digits" type="int"/>
+                    <element minOccurs="0" name="displayLocationInDecimal" type="boolean"/>
+                    <element minOccurs="0" name="externalId" type="boolean"/>
+                    <element minOccurs="0" name="extraTypeInfo" type="string"/>
+                    <element name="filterable" type="boolean"/>
+                    <element name="groupable" type="boolean"/>
+                    <element minOccurs="0" name="htmlFormatted" type="boolean"/>
+                    <element name="idLookup" type="boolean"/>
+                    <element minOccurs="0" name="inlineHelpText" type="string"/>
+                    <element name="label" type="string"/>
+                    <element name="length" type="int"/>
+                    <element minOccurs="0" name="mask" type="string"/>
+                    <element minOccurs="0" name="maskType" type="string"/>
+                    <element name="name" type="string"/>
+                    <element name="nameField" type="boolean"/>
+                    <element minOccurs="0" name="namePointing" type="boolean"/>
+                    <element name="nillable" type="boolean"/>
+                    <element name="permissionable" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="picklistValues" nillable="true" type="tns:PicklistEntry"/>
+                    <element name="precision" type="int"/>
+                    <element name="queryByDistance" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="referenceTo" nillable="true" type="string"/>
+                    <element minOccurs="0" name="relationshipName" type="string"/>
+                    <element minOccurs="0" name="relationshipOrder" type="int"/>
+                    <element minOccurs="0" name="restrictedDelete" type="boolean"/>
+                    <element name="restrictedPicklist" type="boolean"/>
+                    <element name="scale" type="int"/>
+                    <element name="soapType" type="tns:soapType"/>
+                    <element minOccurs="0" name="sortable" type="boolean"/>
+                    <element name="type" type="tns:fieldType"/>
+                    <element name="unique" type="boolean"/>
+                    <element name="updateable" type="boolean"/>
+                    <element minOccurs="0" name="writeRequiresMasterRead" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="PicklistEntry">
+                <sequence>
+                    <element name="active" type="boolean"/>
+                    <element name="defaultValue" type="boolean"/>
+                    <element name="label" nillable="true" type="string"/>
+                    <element minOccurs="0" name="validFor" type="base64Binary"/>
+                    <element name="value" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeDataCategoryGroupResult">
+                <sequence>
+                    <element name="categoryCount" type="int"/>
+                    <element name="description" type="string"/>
+                    <element name="label" type="string"/>
+                    <element name="name" type="string"/>
+                    <element name="sobject" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeDataCategoryGroupStructureResult">
+                <sequence>
+                    <element name="description" type="string"/>
+                    <element name="label" type="string"/>
+                    <element name="name" type="string"/>
+                    <element name="sobject" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="topCategories" type="tns:DataCategory"/>
+                </sequence>
+            </complexType>
+            <complexType name="DataCategoryGroupSobjectTypePair">
+                <sequence>
+                    <element name="dataCategoryGroupName" type="string"/>
+                    <element name="sobject" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DataCategory">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="childCategories" type="tns:DataCategory"/>
+                    <element name="label" type="string"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeFlexiPageResult">
+                <sequence>
+                    <element name="id" type="tns:ID"/>
+                    <element name="label" type="string"/>
+                    <element name="name" type="string"/>
+                    <element minOccurs="0" name="quickActionList" type="tns:DescribeQuickActionListResult"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="regions" type="tns:DescribeFlexiPageRegion"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeFlexiPageRegion">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="components" type="tns:DescribeComponentInstance"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeComponentInstance">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="properties" type="tns:DescribeComponentInstanceProperty"/>
+                    <element name="typeName" type="string"/>
+                    <element name="typeNamespace" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeComponentInstanceProperty">
+                <sequence>
+                    <element name="name" type="string"/>
+                    <element name="value" nillable="true" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeAppMenuResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="appMenuItems" type="tns:DescribeAppMenuItem"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeAppMenuItem">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="colors" type="tns:DescribeColor"/>
+                    <element name="content" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="icons" type="tns:DescribeIcon"/>
+                    <element name="label" type="string"/>
+                    <element name="name" type="string"/>
+                    <element name="type" type="string"/>
+                    <element name="url" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeThemeResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="themeItems" type="tns:DescribeThemeItem"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeThemeItem">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="colors" type="tns:DescribeColor"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="icons" type="tns:DescribeIcon"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSoftphoneLayoutResult">
+                <sequence>
+                    <element maxOccurs="unbounded" name="callTypes" type="tns:DescribeSoftphoneLayoutCallType"/>
+                    <element name="id" type="tns:ID"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSoftphoneLayoutCallType">
+                <sequence>
+                    <element maxOccurs="unbounded" name="infoFields" type="tns:DescribeSoftphoneLayoutInfoField"/>
+                    <element name="name" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="screenPopOptions" type="tns:DescribeSoftphoneScreenPopOption"/>
+                    <element minOccurs="0" name="screenPopsOpenWithin" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="sections" type="tns:DescribeSoftphoneLayoutSection"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSoftphoneScreenPopOption">
+                <sequence>
+                    <element name="matchType" type="string"/>
+                    <element name="screenPopData" type="string"/>
+                    <element name="screenPopType" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSoftphoneLayoutInfoField">
+                <sequence>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSoftphoneLayoutSection">
+                <sequence>
+                    <element name="entityApiName" type="string"/>
+                    <element maxOccurs="unbounded" name="items" type="tns:DescribeSoftphoneLayoutItem"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSoftphoneLayoutItem">
+                <sequence>
+                    <element name="itemApiName" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeCompactLayoutsResult">
+                <sequence>
+                    <element maxOccurs="unbounded" name="compactLayouts" type="tns:DescribeCompactLayout"/>
+                    <element name="defaultCompactLayoutId" type="tns:ID"/>
+                    <element maxOccurs="unbounded" name="recordTypeCompactLayoutMappings" type="tns:RecordTypeCompactLayoutMapping"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeCompactLayout">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="actions" type="tns:DescribeLayoutButton"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="fieldItems" type="tns:DescribeLayoutItem"/>
+                    <element name="id" type="tns:ID"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="imageItems" type="tns:DescribeLayoutItem"/>
+                    <element name="label" type="string"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="RecordTypeCompactLayoutMapping">
+                <sequence>
+                    <element name="available" type="boolean"/>
+                    <element name="compactLayoutId" nillable="true" type="tns:ID"/>
+                    <element name="compactLayoutName" type="string"/>
+                    <element name="recordTypeId" type="tns:ID"/>
+                    <element name="recordTypeName" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeApprovalLayoutResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="approvalLayouts" type="tns:DescribeApprovalLayout"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeApprovalLayout">
+                <sequence>
+                    <element name="id" type="tns:ID"/>
+                    <element name="label" type="string"/>
+                    <element maxOccurs="unbounded" name="layoutItems" type="tns:DescribeLayoutItem"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayoutResult">
+                <sequence>
+                    <element maxOccurs="unbounded" name="layouts" type="tns:DescribeLayout"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="recordTypeMappings" type="tns:RecordTypeMapping"/>
+                    <element name="recordTypeSelectorRequired" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayout">
+                <sequence>
+                    <element minOccurs="0" name="buttonLayoutSection" type="tns:DescribeLayoutButtonSection"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="detailLayoutSections" type="tns:DescribeLayoutSection"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="editLayoutSections" type="tns:DescribeLayoutSection"/>
+
+                    <element minOccurs="0" name="highlightsPanelLayoutSection" type="tns:DescribeLayoutSection"/>
+
+                    <element name="id" nillable="true" type="tns:ID"/>
+
+
+
+                    <element minOccurs="0" name="quickActionList" type="tns:DescribeQuickActionListResult"/>
+
+
+                    <element maxOccurs="1" minOccurs="0" name="relatedContent" type="tns:RelatedContent"/>
+
+                    <element maxOccurs="unbounded" minOccurs="0" name="relatedLists" type="tns:RelatedList"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeQuickActionListResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="quickActionListItems" type="tns:DescribeQuickActionListItemResult"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeQuickActionListItemResult">
+                <sequence>
+					<element name="accessLevelRequired" nillable="true" type="tns:ShareAccessLevel"/> 
+                    <element maxOccurs="unbounded" minOccurs="0" name="colors" type="tns:DescribeColor"/> 
+                    <element name="iconUrl" nillable="true" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="icons" type="tns:DescribeIcon"/>
+                    <element name="label" type="string"/>
+                    <element name="miniIconUrl" type="string"/>
+                    <element name="quickActionName" type="string"/>
+                    <element name="targetSobjectType" nillable="true" type="string"/>
+                    <element name="type" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayoutSection">
+                <sequence>
+                    <element name="columns" type="int"/>
+                    <element name="heading" type="string"/>
+                    <element maxOccurs="unbounded" name="layoutRows" type="tns:DescribeLayoutRow"/>
+                    <element name="rows" type="int"/>
+                    <element name="useCollapsibleSection" type="boolean"/>
+                    <element name="useHeading" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayoutButtonSection">
+                <sequence>
+                    <element maxOccurs="unbounded" name="detailButtons" type="tns:DescribeLayoutButton"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayoutRow">
+                <sequence>
+                    <element maxOccurs="unbounded" name="layoutItems" type="tns:DescribeLayoutItem"/>
+                    <element name="numItems" type="int"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayoutItem">
+                <sequence>
+                    <element name="editable" type="boolean"/>
+                    <element name="label" nillable="true" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="layoutComponents" type="tns:DescribeLayoutComponent"/>
+                    <element name="placeholder" type="boolean"/>
+                    <element name="required" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayoutButton">
+                <sequence>
+                    <element name="custom" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="icons" type="tns:DescribeIcon"/>
+                    <element name="label" nillable="true" type="string"/>
+                    <element name="name" nillable="true" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeLayoutComponent">
+                <sequence>
+                    <element name="displayLines" type="int"/>
+                    <element name="tabOrder" type="int"/>
+                    <element name="type" type="tns:layoutComponentType"/>
+                    <element name="value" type="string"/>
+                </sequence>
+            </complexType>
+            <simpleType name="layoutComponentType">
+                <restriction base="string">
+                    <enumeration value="ReportChart"/>
+                    <enumeration value="Field"/>
+                    <enumeration value="Separator"/>
+                    <enumeration value="SControl"/>
+                    <enumeration value="EmptySpace"/>
+                    <enumeration value="VisualforcePage"/>
+
+                    <enumeration value="ExpandedLookup"/>
+
+
+                    <enumeration value="AuraComponent"/>
+
+                </restriction>
+            </simpleType>
+            <complexType name="ReportChartComponent">
+                <complexContent>
+                    <extension base="tns:DescribeLayoutComponent">
+                        <sequence>
+                            <element name="cacheData" type="boolean"/>
+                            <element name="contextFilterableField" type="string"/>
+                            <element name="hideOnError" type="boolean"/>
+                            <element name="includeContext" type="boolean"/>
+                            <element name="showTitle" type="boolean"/>
+                            <element name="size" type="tns:ReportChartSize"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <simpleType name="ReportChartSize">
+                <restriction base="string">
+                    <enumeration value="SMALL"/>
+                    <enumeration value="MEDIUM"/>
+                    <enumeration value="LARGE"/>
+                </restriction>
+            </simpleType>
+            <complexType name="RecordTypeInfo">
+                <sequence>
+                    <element name="available" type="boolean"/>
+                    <element name="defaultRecordTypeMapping" type="boolean"/>
+                    <element name="name" type="string"/>
+                    <element name="recordTypeId" nillable="true" type="tns:ID"/>
+                </sequence>
+            </complexType>
+            <complexType name="RecordTypeMapping">
+                <sequence>
+                    <element name="available" type="boolean"/>
+                    <element name="defaultRecordTypeMapping" type="boolean"/>
+                    <element name="layoutId" type="tns:ID"/>
+                    <element name="name" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="picklistsForRecordType" nillable="true" type="tns:PicklistForRecordType"/>
+                    <element name="recordTypeId" nillable="true" type="tns:ID"/>
+                </sequence>
+            </complexType>
+            <complexType name="PicklistForRecordType">
+                <sequence>
+                    <element name="picklistName" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="picklistValues" nillable="true" type="tns:PicklistEntry"/>
+                </sequence>
+            </complexType>
+            <complexType name="RelatedContent">
+                <sequence>
+                    <element maxOccurs="unbounded" name="relatedContentItems" type="tns:DescribeRelatedContentItem"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeRelatedContentItem">
+                <sequence>
+                    <element maxOccurs="1" name="describeLayoutItem" type="tns:DescribeLayoutItem"/>
+                </sequence>
+            </complexType>
+            <complexType name="RelatedList">
+                <sequence>
+                    <element name="accessLevelRequiredForCreate" nillable="true" type="tns:ShareAccessLevel"/> 
+                    <element maxOccurs="unbounded" name="columns" type="tns:RelatedListColumn"/>
+                    <element name="custom" type="boolean"/>
+                    <element name="field" nillable="true" type="string"/>
+                    <element name="label" type="string"/>
+                    <element name="limitRows" type="int"/>
+                    <element name="name" type="string"/>
+                    <element name="sobject" nillable="true" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="sort" type="tns:RelatedListSort"/>
+                </sequence>
+            </complexType>
+            <complexType name="RelatedListColumn">
+                <sequence>
+                    <element name="field" nillable="true" type="string"/>
+                    <element name="format" nillable="true" type="string"/>
+                    <element name="label" type="string"/>
+                    <element minOccurs="0" name="lookupId" nillable="true" type="string"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="RelatedListSort">
+                <sequence>
+                    <element name="ascending" type="boolean"/>
+                    <element name="column" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="EmailFileAttachment">
+                <sequence>
+                    <element minOccurs="0" name="body" nillable="true" type="base64Binary"/>
+                    <element minOccurs="0" name="contentType" nillable="true" type="string"/>
+                    <element name="fileName" type="string"/>
+                    <element minOccurs="0" name="inline" type="boolean"/>
+                </sequence>
+            </complexType>
+            <simpleType name="EmailPriority">
+                <restriction base="string">
+                    <enumeration value="Highest"/>
+                    <enumeration value="High"/>
+                    <enumeration value="Normal"/>
+                    <enumeration value="Low"/>
+                    <enumeration value="Lowest"/>
+                </restriction>
+            </simpleType>
+            <complexType name="Email">
+                <sequence>
+                    <element name="bccSender" nillable="true" type="boolean"/>
+                    <element name="emailPriority" nillable="true" type="tns:EmailPriority"/>
+                    <element name="replyTo" nillable="true" type="string"/>
+                    <element name="saveAsActivity" nillable="true" type="boolean"/>
+                    <element name="senderDisplayName" nillable="true" type="string"/>
+                    <element name="subject" nillable="true" type="string"/>
+                    <element name="useSignature" nillable="true" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="MassEmailMessage">
+                <complexContent>
+                    <extension base="tns:Email">
+                        <sequence>
+                            <element name="description" nillable="true" type="string"/>
+                            <element maxOccurs="250" minOccurs="0" name="targetObjectIds" type="tns:ID"/>
+                            <element name="templateId" type="tns:ID"/>
+                            <element maxOccurs="250" minOccurs="0" name="whatIds" type="tns:ID"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="SingleEmailMessage">
+                <complexContent>
+                    <extension base="tns:Email">
+                        <sequence>
+                            <element maxOccurs="25" minOccurs="0" name="bccAddresses" nillable="true" type="string"/>
+                            <element maxOccurs="25" minOccurs="0" name="ccAddresses" nillable="true" type="string"/>
+                            <element name="charset" nillable="true" type="string"/>
+                            <element maxOccurs="unbounded" minOccurs="0" name="documentAttachments" type="tns:ID"/>
+                            <element name="htmlBody" nillable="true" type="string"/>
+                            <element minOccurs="0" name="inReplyTo" nillable="true" type="string"/>
+                            <element maxOccurs="unbounded" minOccurs="0" name="fileAttachments" type="tns:EmailFileAttachment"/>
+                            <element maxOccurs="1" minOccurs="0" name="orgWideEmailAddressId" nillable="true" type="tns:ID"/>
+                            <element name="plainTextBody" nillable="true" type="string"/>
+                            <element minOccurs="0" name="references" nillable="true" type="string"/>
+                            <element name="targetObjectId" nillable="true" type="tns:ID"/>
+                            <element name="templateId" nillable="true" type="tns:ID"/>
+                            <element maxOccurs="100" minOccurs="0" name="toAddresses" nillable="true" type="string"/>
+                            <element name="whatId" nillable="true" type="tns:ID"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <complexType name="SendEmailResult">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:SendEmailError"/>
+                    <element name="success" type="boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeSearchLayoutResult">
+                <sequence>
+                    
+                    <element name="errorMsg" nillable="true" type="string"/>
+                    <element name="label" nillable="true" type="string"/>
+                    <element name="limitRows" nillable="true" type="int"/>
+                    <element name="objectType" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="searchColumns" nillable="true" type="tns:DescribeColumn"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeColumn">
+                    <sequence>
+                        <element name="field" type="string"/>
+                        <element name="format" nillable="true" type="string"/>
+                        <element name="label" type="string"/>
+                        <element name="name" type="string"/>
+                        <element name="sortable" type="boolean"/>
+                    </sequence>
+                </complexType>
+            <complexType name="DescribeSearchScopeOrderResult">
+                <sequence>
+                    <element name="keyPrefix" type="string"/>
+                    <element name="name" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeTabSetResult">
+                <sequence>
+                    <element name="label" type="string"/>
+                    <element name="logoUrl" type="string"/>
+                    <element minOccurs="0" name="namespace" type="string"/>
+                    <element name="selected" type="boolean"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="tabs" type="tns:DescribeTab"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeTab">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="colors" type="tns:DescribeColor"/>
+                    <element name="custom" type="boolean"/>
+                    <element name="iconUrl" type="string"/>
+                    <element maxOccurs="unbounded" minOccurs="0" name="icons" type="tns:DescribeIcon"/>
+                    <element name="label" type="string"/>
+                    <element name="miniIconUrl" type="string"/>
+                    <element name="sobjectName" nillable="true" type="string"/>
+                    <element name="url" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DescribeColor">
+            <sequence>
+                <element name="color" type="string"/>
+                <element name="context" type="string"/>
+                <element name="theme" type="string"/>
+            </sequence>
+        </complexType>
+            <complexType name="DescribeIcon">
+            <sequence>
+                <element name="contentType" type="string"/>
+                <element name="height" nillable="true" type="int"/>
+                <element name="theme" type="string"/>
+                <element name="url" type="string"/>
+                <element name="width" nillable="true" type="int"/>
+            </sequence>
+        </complexType>
+            <element ibmSchExtn:docRoot="true" name="login">
+                <complexType>
+                    <sequence>
+                        <element name="username" type="string"/>
+                        <element name="password" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="loginResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:LoginResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSObject">
+                <complexType>
+                    <sequence>
+                        <element name="sObjectType" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSObjectResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" nillable="true" type="tns:DescribeSObjectResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSObjects">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="100" minOccurs="0" name="sObjectType" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSObjectsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="100" minOccurs="0" name="result" nillable="true" type="tns:DescribeSObjectResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeGlobal">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeGlobalResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:DescribeGlobalResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeGlobalTheme">
+            <complexType>
+                <sequence/>
+            </complexType>
+        </element>
+            <element ibmSchExtn:docRoot="true" name="describeGlobalThemeResponse">
+            <complexType>
+                <sequence>
+                    <element name="result" type="tns:DescribeGlobalTheme"/>
+                </sequence>
+            </complexType>
+        </element>
+            <element ibmSchExtn:docRoot="true" name="describeTheme">
+            <complexType>
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="sobjectType" type="string"/>
+                </sequence>
+            </complexType>
+        </element>
+            <element ibmSchExtn:docRoot="true" name="describeThemeResponse">
+            <complexType>
+                <sequence>
+                    <element name="result" type="tns:DescribeThemeResult"/>
+                </sequence>
+            </complexType>
+        </element>
+            <element ibmSchExtn:docRoot="true" name="describeDataCategoryGroups">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="10" minOccurs="0" name="sObjectType" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeDataCategoryGroupsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="100" minOccurs="0" name="result" type="tns:DescribeDataCategoryGroupResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeDataCategoryGroupStructures">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="100" minOccurs="0" name="pairs" type="tns:DataCategoryGroupSobjectTypePair"/>
+                        <element name="topCategoriesOnly" type="boolean"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeDataCategoryGroupStructuresResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="100" minOccurs="0" name="result" type="tns:DescribeDataCategoryGroupStructureResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeFlexiPages">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="flexiPages" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeFlexiPagesResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:DescribeFlexiPageResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <simpleType name="AppMenuType">
+                <restriction base="string">
+                    <enumeration value="AppSwitcher"/>
+                    <enumeration value="Salesforce1"/>
+                    <enumeration value="NetworkTabs"/>
+                </restriction>
+            </simpleType>
+            <element ibmSchExtn:docRoot="true" name="describeAppMenu">
+                <complexType>
+                    <sequence>
+                        <element name="appMenuType" type="tns:AppMenuType"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeAppMenuResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" nillable="true" type="tns:DescribeAppMenuResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeLayout">
+                <complexType>
+                    <sequence>
+                        <element name="sObjectType" type="string"/>
+                        <element maxOccurs="unbounded" minOccurs="0" name="recordTypeIds" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeLayoutResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" nillable="true" type="tns:DescribeLayoutResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeCompactLayouts">
+                <complexType>
+                    <sequence>
+                        <element name="sObjectType" type="string"/>
+                        <element maxOccurs="unbounded" minOccurs="0" name="recordTypeIds" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeCompactLayoutsResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" nillable="true" type="tns:DescribeCompactLayoutsResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeApprovalLayout">
+                <complexType>
+                    <sequence>
+                        <element name="sObjectType" type="string"/>
+                        <element maxOccurs="unbounded" minOccurs="0" name="approvalProcessNames" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeApprovalLayoutResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" nillable="true" type="tns:DescribeApprovalLayoutResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSoftphoneLayout">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSoftphoneLayoutResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" nillable="true" type="tns:DescribeSoftphoneLayoutResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSearchLayouts">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="sObjectType" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSearchLayoutsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" nillable="true" type="tns:DescribeSearchLayoutResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSearchScopeOrder">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeSearchScopeOrderResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:DescribeSearchScopeOrderResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeTabs">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeTabsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" nillable="true" type="tns:DescribeTabSetResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="create">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="sObjects" type="ens:sObject"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="createResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:SaveResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="sendEmail">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="10" minOccurs="0" name="messages" type="tns:Email"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="sendEmailResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="10" minOccurs="0" name="result" type="tns:SendEmailResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="sendEmailMessage">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="10" minOccurs="0" name="ids" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="sendEmailMessageResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="10" minOccurs="0" name="result" type="tns:SendEmailResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="update">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="sObjects" type="ens:sObject"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="updateResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:SaveResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="upsert">
+                <complexType>
+                    <sequence>
+                        <element name="externalIDFieldName" type="string"/>
+                        <element maxOccurs="unbounded" minOccurs="0" name="sObjects" type="ens:sObject"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="upsertResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:UpsertResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="merge">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="request" type="tns:MergeRequest"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="mergeResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:MergeResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="delete">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="ids" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="deleteResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:DeleteResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="undelete">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="1" name="ids" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="undeleteResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="1" name="result" type="tns:UndeleteResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="emptyRecycleBin">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="1" name="ids" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="emptyRecycleBinResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="1" name="result" type="tns:EmptyRecycleBinResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="process">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="actions" type="tns:ProcessRequest"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="processResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:ProcessResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="performQuickActions">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="quickActions" type="tns:PerformQuickActionRequest"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="performQuickActionsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:PerformQuickActionResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="retrieveQuickActionTemplates">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="quickActionNames" type="string"/>
+                        <element name="contextId" nillable="true" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="retrieveQuickActionTemplatesResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:QuickActionTemplateResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeQuickActions">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="quickActions" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeQuickActionsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:DescribeQuickActionResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeAvailableQuickActions">
+                <complexType>
+                    <sequence>
+                        <element name="contextType" nillable="true" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="describeAvailableQuickActionsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:DescribeAvailableQuickActionResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="retrieve">
+                <complexType>
+                    <sequence>
+                        <element name="fieldList" type="string"/>
+                        <element name="sObjectType" type="string"/>
+                        <element maxOccurs="unbounded" minOccurs="0" name="ids" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="retrieveResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" nillable="true" type="ens:sObject"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="convertLead">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="leadConverts" type="tns:LeadConvert"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="convertLeadResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:LeadConvertResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getUpdated">
+                <complexType>
+                    <sequence>
+                        <element name="sObjectType" type="string"/>
+                        <element name="startDate" type="dateTime"/>
+                        <element name="endDate" type="dateTime"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getUpdatedResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:GetUpdatedResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getDeleted">
+                <complexType>
+                    <sequence>
+                        <element name="sObjectType" type="string"/>
+                        <element name="startDate" type="dateTime"/>
+                        <element name="endDate" type="dateTime"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getDeletedResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:GetDeletedResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="logout">
+                <complexType>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="logoutResponse">
+                <complexType>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="invalidateSessions">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="sessionIds" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="invalidateSessionsResponse">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:InvalidateSessionsResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="query">
+                <complexType>
+                    <sequence>
+                        <element name="queryString" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="queryResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:QueryResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="queryAll">
+                <complexType>
+                    <sequence>
+                        <element name="queryString" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="queryAllResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:QueryResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="queryMore">
+                <complexType>
+                    <sequence>
+                        <element name="queryLocator" type="tns:QueryLocator"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="queryMoreResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:QueryResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="search">
+                <complexType>
+                    <sequence>
+                        <element name="searchString" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="searchResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:SearchResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getServerTimestamp">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getServerTimestampResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:GetServerTimestampResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="setPassword">
+                <complexType>
+                    <sequence>
+                        <element name="userId" type="tns:ID"/>
+                        <element name="password" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="setPasswordResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:SetPasswordResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="resetPassword">
+                <complexType>
+                    <sequence>
+                        <element name="userId" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="resetPasswordResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:ResetPasswordResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getUserInfo">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="getUserInfoResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="tns:GetUserInfoResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="SessionHeader">
+                <complexType>
+                    <sequence>
+                        <element name="sessionId" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="LoginScopeHeader">
+                <complexType>
+                    <sequence>
+                        <element name="organizationId" type="tns:ID"/>
+                        <element minOccurs="0" name="portalId" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="QueryOptions">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" name="batchSize" type="int"/>
+
+                    </sequence>
+                </complexType>
+            </element>
+            <simpleType name="DebugLevel">
+                <restriction base="string">
+                    <enumeration value="None"/>
+                    <enumeration value="DebugOnly"/>
+                    <enumeration value="Db"/>
+                </restriction>
+            </simpleType>
+            <element ibmSchExtn:docRoot="true" name="DebuggingHeader">
+                <complexType>
+                    <sequence>
+                        <element name="debugLevel" type="tns:DebugLevel"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="DebuggingInfo">
+                <complexType>
+                    <sequence>
+                        <element name="debugLog" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <xsd:complexType name="PackageVersion">
+    <xsd:sequence>
+     <xsd:element name="majorNumber" type="int"/>
+     <xsd:element name="minorNumber" type="int"/>
+     <xsd:element name="namespace" type="string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+            <xsd:element ibmSchExtn:docRoot="true" name="PackageVersionHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="packageVersions" type="tns:PackageVersion"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+            <element ibmSchExtn:docRoot="true" name="AllowFieldTruncationHeader">
+                <complexType>
+                    <sequence>
+                        <element name="allowFieldTruncation" type="boolean"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="DisableFeedTrackingHeader">
+                <complexType>
+                    <sequence>
+                        <element name="disableFeedTracking" type="boolean"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="StreamingEnabledHeader">
+                <complexType>
+                    <sequence>
+                        <element name="streamingEnabled" type="boolean"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="AllOrNoneHeader">
+            <complexType>
+                <sequence>
+                    <element name="allOrNone" type="boolean"/>
+                </sequence>
+            </complexType>
+        </element>
+            <complexType name="LimitInfo">
+            <sequence>
+                <element name="current" type="int"/>
+                <element name="limit" type="int"/>
+                <element name="type" type="string"/>
+            </sequence>
+        </complexType>
+            <element ibmSchExtn:docRoot="true" name="LimitInfoHeader">
+            <complexType>
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="limitInfo" type="tns:LimitInfo"/>
+                </sequence>
+            </complexType>
+        </element>
+            <element ibmSchExtn:docRoot="true" name="MruHeader">
+                <complexType>
+                    <sequence>
+                        <element name="updateMru" type="boolean"/>
+                    </sequence>
+                </complexType>
+	</element>
+            <element ibmSchExtn:docRoot="true" name="EmailHeader">
+                <complexType>
+                    <sequence>
+                        <element name="triggerAutoResponseEmail" type="boolean"/>
+                        <element name="triggerOtherEmail" type="boolean"/>
+                        <element name="triggerUserEmail" type="boolean"/>
+                    </sequence>
+                </complexType>
+	</element>
+            <element ibmSchExtn:docRoot="true" name="AssignmentRuleHeader">
+                <complexType>
+                    <sequence>
+                        <element name="assignmentRuleId" nillable="true" type="tns:ID"/>
+                        <element name="useDefaultRule" nillable="true" type="boolean"/>
+                    </sequence>
+                </complexType>
+	</element>
+            <element ibmSchExtn:docRoot="true" name="UserTerritoryDeleteHeader">
+                <complexType>
+                    <sequence>
+                        <element name="transferToUserId" nillable="true" type="tns:ID"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="LocaleOptions">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="0" name="language" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element ibmSchExtn:docRoot="true" name="OwnerChangeOptions">
+            <complexType>
+                <sequence>
+                    <element name="transferAttachments" type="boolean"/>
+                    <element name="transferOpenActivities" type="boolean"/>
+                </sequence>
+            </complexType>
+        </element>
+        </schema>

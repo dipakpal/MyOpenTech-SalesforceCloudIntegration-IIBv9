@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmRoute.msgnode="ComIbmRoute.msgnode" xmlns:SalesforceWebserviceInvocation.subflow="SalesforceWebserviceInvocation.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="SalesforceCloudIntegration.msgflow"
+    nsPrefix="SalesforceCloudIntegration.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SalesforcePassword" name="SalesforcePassword" lowerBound="1" defaultValueLiteral="yourpasswordPfNSYqCiDekhgstfG4fbeNvg">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SalesforceUserId" name="SalesforceUserId" lowerBound="1" defaultValueLiteral="dipak@sdfc.com">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SalesforceLoginURL" name="SalesforceLoginURL" defaultValueLiteral="https://login.salesforce.com/services/Soap/c/30.0">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SalesforceLoginURL.internal_npcompiler" name="SalesforceLoginURL.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="SalesforceCloudIntegration" bundleName="SalesforceCloudIntegration" pluginId="SalesforceCloudIntegration"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SalesforceCloudIntegration/icons/full/obj16/SalesforceCloudIntegration.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/SalesforceCloudIntegration/icons/full/obj30/SalesforceCloudIntegration.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="8,216" queueName="SDFC.MQ.SERVICE.REQUEST" messageDomainProperty="XMLNSC" transactionMode="no">
+        <translation xmi:type="utility:ConstantString" string="SDFC.MQ.SERVICE.REQUEST"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="923,220" queueName="SDFC.MQ.SERVICE.REPLY">
+        <translation xmi:type="utility:ConstantString" string="SDFC.MQ.SERVICE.REPLY"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRoute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="166,216" distributionMode="first">
+        <outTerminals terminalNodeID="create" dynamic="true" label="create"/>
+        <outTerminals terminalNodeID="retrieve" dynamic="true" label="retrieve"/>
+        <outTerminals terminalNodeID="update" dynamic="true" label="update"/>
+        <outTerminals terminalNodeID="delete" dynamic="true" label="delete"/>
+        <outTerminals terminalNodeID="query" dynamic="true" label="query"/>
+        <translation xmi:type="utility:ConstantString" string="Route to Prepare Operation"/>
+        <filterTable filterPattern="$Root/XMLNSC/Salesforce/Object/@operation=&quot;create&quot;" routingOutputTerminal="create"/>
+        <filterTable filterPattern="$Root/XMLNSC/Salesforce/Object/@operation=&quot;retrieve&quot;" routingOutputTerminal="retrieve"/>
+        <filterTable filterPattern="$Root/XMLNSC/Salesforce/Object/@operation=&quot;update&quot;" routingOutputTerminal="update"/>
+        <filterTable filterPattern="$Root/XMLNSC/Salesforce/Object/@operation=&quot;delete&quot;" routingOutputTerminal="delete"/>
+        <filterTable filterPattern="$Root/XMLNSC/Salesforce/Object/@operation=&quot;query&quot;" routingOutputTerminal="query"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="315,81" computeExpression="esql://routine/#SalesforceCloudIntegration_PrepareCreateOperation.Main">
+        <translation xmi:type="utility:ConstantString" string="Prepare Create Operation"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="310,148" computeExpression="esql://routine/#SalesforceCloudIntegration_PrepareRetrieveOperation.Main">
+        <translation xmi:type="utility:ConstantString" string="Prepare Retrieve Operation"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="190,28" queueName="SDFC.MQ.SERVICE.REPLY">
+        <translation xmi:type="utility:ConstantString" string="SDFC.MQ.SERVICE.ERROR.REPLY"/>
+      </nodes>
+      <nodes xmi:type="SalesforceWebserviceInvocation.subflow:FCMComposite_1" xmi:id="FCMComposite_1_1" location="454,218">
+        <translation xmi:type="utility:ConstantString" string="SalesforceWebserviceInvocation"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="312,217" computeExpression="esql://routine/#SalesforceCloudIntegration_PrepareUpdateOperation.Main">
+        <translation xmi:type="utility:ConstantString" string="Prepare Update Operation"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="314,284" computeExpression="esql://routine/#SalesforceCloudIntegration_PrepareDeleteOperation.Main">
+        <translation xmi:type="utility:ConstantString" string="Prepare Delete Operation"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRoute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="631,218">
+        <outTerminals terminalNodeID="create" dynamic="true" label="create"/>
+        <outTerminals terminalNodeID="retrieve" dynamic="true" label="retrieve"/>
+        <outTerminals terminalNodeID="update" dynamic="true" label="update"/>
+        <outTerminals terminalNodeID="delete" dynamic="true" label="delete"/>
+        <outTerminals terminalNodeID="query" dynamic="true" label="query"/>
+        <translation xmi:type="utility:ConstantString" string="Route to Process Response"/>
+        <filterTable filterPattern="$Environment/Variables/Salesforce/Operation=&quot;create&quot;" routingOutputTerminal="create"/>
+        <filterTable filterPattern="$Environment/Variables/Salesforce/Operation=&quot;retrieve&quot;" routingOutputTerminal="retrieve"/>
+        <filterTable filterPattern="$Environment/Variables/Salesforce/Operation=&quot;update&quot;" routingOutputTerminal="update"/>
+        <filterTable filterPattern="$Environment/Variables/Salesforce/Operation=&quot;delete&quot;" routingOutputTerminal="delete"/>
+        <filterTable filterPattern="$Environment/Variables/Salesforce/Operation=&quot;query&quot;" routingOutputTerminal="query"/>
+        <nsMappingTable nsPrefix="tns" namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="777,81" computeExpression="esql://routine/#SalesforceCloudIntegration_ProcessCreateResponse.Main">
+        <translation xmi:type="utility:ConstantString" string="Process Create Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="775,147" computeExpression="esql://routine/#SalesforceCloudIntegration_ProcessRetrieveResponse.Main">
+        <translation xmi:type="utility:ConstantString" string="Process Retrieve Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="779,219" computeExpression="esql://routine/#SalesforceCloudIntegration_ProcessUpdateResponse.Main">
+        <translation xmi:type="utility:ConstantString" string="Process Update Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="784,285" computeExpression="esql://routine/#SalesforceCloudIntegration_ProcessDeleteResponse.Main">
+        <translation xmi:type="utility:ConstantString" string="Process Delete Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="318,351" computeExpression="esql://routine/#SalesforceCloudIntegration_PrepareQueryOperation.Main">
+        <translation xmi:type="utility:ConstantString" string="Prepare Query Operation"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_16" location="788,354" computeExpression="esql://routine/#SalesforceCloudIntegration_ProcessQueryResponse.Main">
+        <translation xmi:type="utility:ConstantString" string="Process Query Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="117,116" computeExpression="esql://routine/#SalesforceCloudIntegration_PrepareErrorMessage.Main">
+        <translation xmi:type="utility:ConstantString" string="Prepare Error Message"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_12" sourceTerminalName="create" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_12" sourceTerminalName="retrieve" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_12" sourceTerminalName="update" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_12" sourceTerminalName="delete" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_6" sourceTerminalName="create" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_6" sourceTerminalName="retrieve" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_6" sourceTerminalName="update" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_6" sourceTerminalName="delete" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_18" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_12" sourceTerminalName="query" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_23" targetNode="FCMComposite_1_16" sourceNode="FCMComposite_1_6" sourceTerminalName="query" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_24" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_17" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_17" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_25" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_17" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.SalesforcePassword">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.SalesforcePassword" bundleName="SalesforceWebserviceInvocation" pluginId="SalesforceCloudIntegration"/>
+        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.SalesforceUserId">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.SalesforceUserId" bundleName="SalesforceWebserviceInvocation" pluginId="SalesforceCloudIntegration"/>
+          <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.soap.http.SOAP_Over_HTTP_WebServicesURLPropertyEditor" compiler="com.ibm.etools.mft.ibmnodes.compilers.GenericSOAPCompiler" configurable="true" describedAttribute="Property.SalesforceLoginURL">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.SalesforceLoginURL" bundleName="SalesforceWebserviceInvocation" pluginId="SalesforceCloudIntegration"/>
+            <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" describedAttribute="Property.SalesforceLoginURL.internal_npcompiler">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.SalesforceLoginURL.internal_npcompiler" bundleName="SalesforceCloudIntegration" pluginId="SalesforceCloudIntegration"/>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.SalesforcePassword" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="SalesforceWebserviceInvocation.subflow#Property.SalesforcePassword"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.SalesforceUserId" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="SalesforceWebserviceInvocation.subflow#Property.SalesforceUserId"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.SalesforceLoginURL" overriddenNodes="FCMComposite_1_1">
+      <overriddenAttribute href="SalesforceWebserviceInvocation.subflow#Property.SalesforceLoginURL"/>
+    </attributeLinks>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

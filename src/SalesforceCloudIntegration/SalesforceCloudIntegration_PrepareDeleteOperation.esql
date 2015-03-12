@@ -1,0 +1,32 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_PrepareDeleteOperation
+** Description: This compute module prepares Salesforce XML message (without SOAP Envelope)
+** for "delete" operation.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_PrepareDeleteOperation
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.Variables.Properties = InputRoot.Properties;
+		SET Environment.Variables.MQMD = InputRoot.MQMD;
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		SET Environment.Variables.Salesforce.Operation = 'delete';
+		SET Environment.Variables.Salesforce.ObjectType = InputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)type;
+		
+		DECLARE RecordRef REFERENCE TO InputRoot.XMLNSC.Salesforce.Object.Records.Record[1];
+		
+		SET OutputRoot.XMLNSC.urn:delete.(XMLNSC.NamespaceDecl)xmlns:urn = urn;
+		SET OutputRoot.XMLNSC.urn:delete.(XMLNSC.NamespaceDecl)xmlns:urn1 = urn1;
+		
+		DECLARE sIdsRef REFERENCE TO OutputRoot;
+		
+		WHILE LASTMOVE (RecordRef) DO
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.urn:delete AS sIdsRef NAME 'urn:ids' VALUE RecordRef.Id;			
+			MOVE RecordRef NEXTSIBLING;
+		END WHILE;		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

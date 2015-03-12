@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Salesforce>
+   <Object operation="query">
+      <Records count="3">
+         <Record>
+            <Id>00QF000000btnoTMAQ</Id>
+            <City>Armonk</City>
+            <Company>IBM</Company>
+            <Country>United States</Country>
+            <FirstName>Dipak</FirstName>
+            <LastName>Pal</LastName>
+            <PostalCode>10504</PostalCode>
+            <Salutation>Mr.</Salutation>
+            <State>New York</State>
+            <Street>11 New Orchard Road</Street>
+         </Record>
+         <Record>
+            <Id>00QF000000btnoUMAQ</Id>
+            <City>Armonk</City>
+            <Company>IBM</Company>
+            <Country>United States</Country>
+            <FirstName>Jow</FirstName>
+            <LastName>Brown</LastName>
+            <PostalCode>10504</PostalCode>
+            <Salutation>Mr.</Salutation>
+            <State>New York</State>
+            <Street>12 New Orchard Road</Street>
+         </Record>
+         <Record>
+            <Id>00QF000000btnoVMAQ</Id>
+            <City>Armonk</City>
+            <Company>IBM</Company>
+            <Country>United States</Country>
+            <FirstName>Hari</FirstName>
+            <LastName>Prasad</LastName>
+            <PostalCode>10504</PostalCode>
+            <Salutation>Mr.</Salutation>
+            <State>New York</State>
+            <Street>13 New Orchard Road</Street>
+         </Record>
+      </Records>
+   </Object>
+</Salesforce>

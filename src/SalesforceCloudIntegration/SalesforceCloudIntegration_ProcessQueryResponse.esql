@@ -1,0 +1,56 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_ProcessQueryResponse
+** Description: This compute module processes Salesforce "query" response message and
+** prepares target response message.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_ProcessQueryResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = Environment.Variables.Properties;
+		SET OutputRoot.MQMD = Environment.Variables.MQMD;
+		SET OutputRoot.MQMD.CorrelId = Environment.Variables.MQMD.MsgId;
+		
+		CREATE FIRSTCHILD OF OutputRoot.XMLNSC TYPE XMLNSC.XmlDeclaration NAME 'XmlDeclaration';		
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Version = '1.0';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Encoding = 'UTF-8';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)StandAlone = 'yes';
+		
+		SET OutputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)operation = Environment.Variables.Salesforce.Operation;
+		SET OutputRoot.XMLNSC.Salesforce.Object.Records.(XMLNSC.Attribute)count = InputRoot.XMLNSC.urn:queryResponse.urn:result.urn:size;
+
+		DECLARE ResultRecordRef REFERENCE TO InputRoot.XMLNSC.urn:queryResponse.urn:result.urn:records[1];
+		DECLARE RecordRef REFERENCE TO OutputRoot;
+		DECLARE OutChildElementRef REFERENCE TO OutputRoot;
+		DECLARE ElementName CHARACTER '';		
+		
+		WHILE LASTMOVE(ResultRecordRef) DO
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.Salesforce.Object.Records AS RecordRef NAME 'Record';
+			
+			DECLARE FieldRef REFERENCE TO ResultRecordRef.urn1:*[1];
+			WHILE LASTMOVE(FieldRef) DO
+				SET ElementName = FIELDNAME(FieldRef);
+				CREATE LASTCHILD OF RecordRef AS OutChildElementRef NAME ElementName;
+				
+				DECLARE ChildFieldRef REFERENCE TO FieldRef.urn1:*[1];
+				
+				IF LASTMOVE(ChildFieldRef) = FALSE THEN
+					SET OutChildElementRef = FIELDVALUE(FieldRef);
+				END IF;
+				
+				WHILE LASTMOVE(ChildFieldRef) DO
+					SET ElementName = FIELDNAME(ChildFieldRef);
+					CREATE LASTCHILD OF OutChildElementRef NAME ElementName VALUE FIELDVALUE(ChildFieldRef);
+					MOVE ChildFieldRef NEXTSIBLING;
+				END WHILE;
+				
+				MOVE FieldRef NEXTSIBLING;
+			END WHILE;
+			
+			MOVE ResultRecordRef NEXTSIBLING REPEAT TYPE NAME;
+		END WHILE;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

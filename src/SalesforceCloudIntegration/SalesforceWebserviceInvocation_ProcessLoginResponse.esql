@@ -1,0 +1,25 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceWebserviceInvocation_ProcessLoginResponse
+** Description: This compute module processes the Salesforce login response and stores
+** SessionId and ServiceURL into SHARED variables for subsequent invocations to this messageflow.
+*********************************************************************************************/
+
+DECLARE vSessionId SHARED CHARACTER '';
+DECLARE vServerUrl SHARED CHARACTER '';
+
+CREATE COMPUTE MODULE SalesforceWebserviceInvocation_ProcessLoginResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET vSessionId = InputRoot.XMLNSC.urn:loginResponse.urn:result.urn:sessionId;
+		SET vServerUrl = InputRoot.XMLNSC.urn:loginResponse.urn:result.urn:serverUrl;
+		
+		SET OutputRoot.Properties = Environment.Variables.Login.Properties;
+		SET OutputRoot.XMLNSC = Environment.Variables.InputData;
+		
+		DELETE FIELD Environment.Variables.Login.Properties;
+		DELETE FIELD Environment.Variables.InputData;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

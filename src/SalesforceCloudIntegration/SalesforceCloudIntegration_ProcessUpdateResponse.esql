@@ -1,0 +1,44 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_ProcessUpdateResponse
+** Description: This compute module processes Salesforce "update" response message and
+** prepares target response message.
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_ProcessUpdateResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = Environment.Variables.Properties;
+		SET OutputRoot.MQMD = Environment.Variables.MQMD;
+		SET OutputRoot.MQMD.CorrelId = Environment.Variables.MQMD.MsgId;
+		
+		CREATE FIRSTCHILD OF OutputRoot.XMLNSC TYPE XMLNSC.XmlDeclaration NAME 'XmlDeclaration';		
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Version = '1.0';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Encoding = 'UTF-8';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)StandAlone = 'yes';
+		
+		SET OutputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)type = Environment.Variables.Salesforce.ObjectType;
+		SET OutputRoot.XMLNSC.Salesforce.Object.(XMLNSC.Attribute)operation = Environment.Variables.Salesforce.Operation;
+		CREATE FIELD OutputRoot.XMLNSC.Salesforce.Object.Records;
+		
+		DECLARE UpdateResponseRef REFERENCE TO InputRoot.XMLNSC.urn:updateResponse.urn:result[1];
+		DECLARE RecordRef REFERENCE TO OutputRoot;
+		
+		WHILE LASTMOVE(UpdateResponseRef) DO
+			CREATE LASTCHILD OF OutputRoot.XMLNSC.Salesforce.Object.Records AS RecordRef NAME 'Record';
+			
+			IF UpdateResponseRef.urn:success THEN
+				SET RecordRef.Status = 'Success';
+				SET RecordRef.Id = UpdateResponseRef.urn:id;
+			ELSE
+				SET RecordRef.Status = 'Error';
+				SET RecordRef.Error.ErrorCode = UpdateResponseRef.urn:errors.urn:statusCode;
+				SET RecordRef.Error.ErrorMessage = UpdateResponseRef.urn:errors.urn:message;
+			END IF;
+			
+			MOVE UpdateResponseRef NEXTSIBLING REPEAT TYPE NAME;
+		END WHILE;		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

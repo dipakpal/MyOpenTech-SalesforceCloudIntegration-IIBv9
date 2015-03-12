@@ -1,0 +1,52 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceCloudIntegration_PrepareErrorMessage
+** Description: This compute module prepares error message and put into reply queue
+*********************************************************************************************/
+
+CREATE COMPUTE MODULE SalesforceCloudIntegration_PrepareErrorMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		
+		DECLARE vMessageNumber INTEGER;
+		DECLARE vMessageText CHARACTER;
+		
+		CALL GetLastExceptionDetail(InputExceptionList, vMessageNumber, vMessageText);
+		
+		CREATE FIRSTCHILD OF OutputRoot.XMLNSC TYPE XMLNSC.XmlDeclaration NAME 'XmlDeclaration';		
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Version = '1.0';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)Encoding = 'UTF-8';
+		SET OutputRoot.XMLNSC.(XMLNSC.XmlDeclaration)*.(XMLNSC.Attribute)StandAlone = 'yes';
+		
+		SET OutputRoot.XMLNSC.Salesforce.Error.ErrorCode = 'SDFC_ERROR';
+		SET OutputRoot.XMLNSC.Salesforce.Error.ErrorMessage = vMessageText;
+		
+		RETURN TRUE;
+	END;
+	
+	-- Process Exception Tree and extract error number/message
+	CREATE PROCEDURE GetLastExceptionDetail(IN InputTree REFERENCE, OUT messageNumber INTEGER, OUT messageText CHARACTER)
+	BEGIN
+		DECLARE ptrException REFERENCE to InputTree.*[1];
+		
+		WHILE LASTMOVE(ptrException) DO
+			IF ptrException.Number IS NOT NULL THEN
+				SET messageNumber = ptrException.Number;
+				SET messageText = COALESCE(ptrException.Text, '') || ': ' || COALESCE(ptrException.Insert.Text, '');
+			END IF;
+			
+			MOVE ptrException LASTCHILD;
+		END WHILE; 
+	END;
+	
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+END MODULE;

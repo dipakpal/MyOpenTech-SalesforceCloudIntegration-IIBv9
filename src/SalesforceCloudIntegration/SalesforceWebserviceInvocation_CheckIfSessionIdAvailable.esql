@@ -1,0 +1,18 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceWebserviceInvocation_CheckIfSessionIdAvailable
+** Description: This compute module checks whether an existing SessionId/ServerUrl available 
+** at SHARED variables.
+*********************************************************************************************/
+
+CREATE FILTER MODULE SalesforceWebserviceInvocation_CheckIfSessionIdAvailable
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		IF vSessionId <> '' AND vServerUrl <> '' THEN
+			RETURN TRUE;
+		END IF;
+		
+		RETURN FALSE;
+	END;
+
+END MODULE;

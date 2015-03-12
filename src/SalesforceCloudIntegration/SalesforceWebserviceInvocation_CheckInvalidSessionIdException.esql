@@ -1,0 +1,17 @@
+
+/********************************************************************************************
+** Compute Module: SalesforceWebserviceInvocation_CheckInvalidSessionIdException
+** Description: This compute module check whether the exception is invalid session related.
+*********************************************************************************************/
+
+CREATE FILTER MODULE SalesforceWebserviceInvocation_CheckInvalidSessionIdException
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		IF CONTAINS(Environment.Variables.Fault.FaultCode, 'INVALID_SESSION_ID') THEN
+			RETURN TRUE;
+		END IF;
+		
+		RETURN FALSE;
+	END;
+
+END MODULE;

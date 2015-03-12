@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Salesforce>
+   <Object operation="query">
+      <Query>select Id, InvalidField from Lead</Query>
+   </Object>
+</Salesforce>

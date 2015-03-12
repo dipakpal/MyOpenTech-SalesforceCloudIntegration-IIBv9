@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Salesforce>
+   <Object type="Lead" operation="create">
+      <Records>
+         <Record>
+            <Salutation>Mr.</Salutation>
+            <FirstName>Dipak</FirstName>
+            <LastName>Pal</LastName>
+            <Title>Software Engineer</Title>
+            <Company>IBM</Company>
+            <Street>11 New Orchard Road</Street>
+            <City>Armonk</City>
+            <State>New York</State>
+            <PostalCode>10504</PostalCode>
+            <Country>United States</Country>
+            <MobilePhone>111-222-1234</MobilePhone>
+            <Email>email1@ibm.com</Email>
+            <Status>Working - Contacted</Status>
+            <Industry>Agriculture</Industry>
+            <Rating>Cold</Rating>
+            <AnnualRevenue>10000000000</AnnualRevenue>
+            <NumberOfEmployees>300000</NumberOfEmployees>
+            <SICCode__c>123</SICCode__c>
+            <ProductInterest__c>GC5000 series</ProductInterest__c>
+            <Primary__c>Yes</Primary__c>
+            <CurrentGenerators__c>All</CurrentGenerators__c>
+            <NumberofLocations__c>100</NumberofLocations__c>
+         </Record>
+         <Record>
+            <Salutation>Mr.</Salutation>
+            <FirstName>Jow</FirstName>
+            <LastName>Brown</LastName>
+            <Title>Software Engineer</Title>
+            <Company>IBM</Company>
+            <Street>12 New Orchard Road</Street>
+            <City>Armonk</City>
+            <State>New York</State>
+            <PostalCode>10504</PostalCode>
+            <Country>United States</Country>
+            <MobilePhone>333-222-1234</MobilePhone>
+            <Email>email2@ibm.com</Email>
+            <Status>Working - Contacted</Status>
+            <Industry>Agriculture</Industry>
+            <Rating>Cold</Rating>
+            <AnnualRevenue>10000000000</AnnualRevenue>
+            <NumberOfEmployees>300000</NumberOfEmployees>
+            <SICCode__c>123</SICCode__c>
+            <ProductInterest__c>GC5000 series</ProductInterest__c>
+            <Primary__c>Yes</Primary__c>
+            <CurrentGenerators__c>All</CurrentGenerators__c>
+            <NumberofLocations__c>100</NumberofLocations__c>
+         </Record>
+         <Record>
+            <Salutation>Mr.</Salutation>
+            <FirstName>Hari</FirstName>
+            <LastName>Prasad</LastName>
+            <Title>Software Engineer</Title>
+            <Company>IBM</Company>
+            <Street>13 New Orchard Road</Street>
+            <City>Armonk</City>
+            <State>New York</State>
+            <PostalCode>10504</PostalCode>
+            <Country>United States</Country>
+            <MobilePhone>999-222-1234</MobilePhone>
+            <Email>email3@ibm.com</Email>
+            <Status>Working - Contacted</Status>
+            <Industry>Agriculture</Industry>
+            <Rating>Cold</Rating>
+            <AnnualRevenue>10000000000</AnnualRevenue>
+            <NumberOfEmployees>300000</NumberOfEmployees>
+            <SICCode__c>123</SICCode__c>
+            <ProductInterest__c>GC5000 series</ProductInterest__c>
+            <Primary__c>Yes</Primary__c>
+            <CurrentGenerators__c>All</CurrentGenerators__c>
+            <NumberofLocations__c>100</NumberofLocations__c>
+         </Record>
+      </Records>
+   </Object>
+</Salesforce>
