@@ -832,9 +832,20 @@ Conclusion
 
 This article presents a high level design pattern with step-by-step implementation guide including development of a generic messageflow for Salesforce cloud integration through IBM Integration Bus. Salesforce cloud integration through IBM Integration Bus is relatively expensive than IBM Websphere Cast Iron tool. But organizations with fewer integration requirements, already having IBM Integration Bus (or Websphere Message Broker) in their software stack can develop Salesforce cloud integration solution without buying Websphere Cast Iron or another integration tool.
 
-
+Resources
+---------
 
  
+Source code, documents, samples and other artifacts are available at [GitHub][28] ([https://github.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9][29]) and [IBM developerWorks public community][30] ([https://www.ibm.com/developerworks/community/groups/community/sdfccloudintegrationiib/][31])
+ 
+Do you have any question ? Just put your question(s) at following [IBM developerWorks public community forum][33] ([https://www.ibm.com/developerworks/community/forums/html/topic?id=2c199351-542a-4c8b-bd2e-ded23e568735][33])
+ 
+
+Feedback
+--------
+
+ 
+You can provide your valuable feedback/suggestion to dipakpal.opentech@gmail.com
 
 
   [1]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Logo.png
@@ -864,3 +875,9 @@ This article presents a high level design pattern with step-by-step implementati
   [25]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure18.png
   [26]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure19.png
   [27]: http://www.salesforce.com/us/developer/docs/soql_sosl/
+  [28]: https://github.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9
+  [29]: https://github.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9
+  [30]: https://www.ibm.com/developerworks/community/groups/community/sdfccloudintegrationiib/
+  [31]: https://www.ibm.com/developerworks/community/groups/community/sdfccloudintegrationiib/
+  [32]: https://www.ibm.com/developerworks/community/forums/html/topic?id=2c199351-542a-4c8b-bd2e-ded23e568735
+  [33]: https://www.ibm.com/developerworks/community/forums/html/topic?id=2c199351-542a-4c8b-bd2e-ded23e568735
