@@ -75,15 +75,15 @@ However you can use Salesforce Sandbox endpoint URL (https://test.salesforce.com
 ![image alt][8] 
 **Figure-7: Salesforce “login” operation call at SOAPUI tool**
 
-&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:urn=&quot;urn:enterprise.soap.sforce.com&quot;&gt;
-   &lt;soapenv:Header/&gt;
-   &lt;soapenv:Body&gt;
-      &lt;urn:login&gt;
-         &lt;urn:username&gt;yourusername&lt;/urn:username&gt;
-         &lt;urn:password&gt;yourpasswordFTYuNqCiDegstydvkG4fbeJho&lt;/urn:password&gt;
-      &lt;/urn:login&gt;
-   &lt;/soapenv:Body&gt;
-&lt;/soapenv:Envelope&gt;
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:enterprise.soap.sforce.com">
+       <soapenv:Header/>
+       <soapenv:Body>
+          <urn:login>
+             <urn:username>yourusername</urn:username>
+             <urn:password>yourpasswordFTYuNqCiDegstydvkG4fbeJho</urn:password>
+          </urn:login>
+       </soapenv:Body>
+    </soapenv:Envelope>
 
 **Table-1: Sample SOAP request XML for Salesforce “login” operation.**
 
