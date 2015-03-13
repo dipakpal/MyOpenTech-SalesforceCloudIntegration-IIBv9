@@ -838,7 +838,7 @@ Resources
  
 Source code, documents, samples and other artifacts are available at [GitHub][28] ([https://github.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9][29]) and [IBM developerWorks public community][30] ([https://www.ibm.com/developerworks/community/groups/community/sdfccloudintegrationiib/][31])
  
-Do you have any question ? Just put your question(s) at following [IBM developerWorks public community forum][33] ([https://www.ibm.com/developerworks/community/forums/html/topic?id=2c199351-542a-4c8b-bd2e-ded23e568735][33])
+Do you have any question ? Just put your question(s) at following [IBM developerWorks public community forum][33] ([https://www.ibm.com/developerworks/community/forums/html/topic?id=2c199351-542a-4c8b-bd2e-ded23e568735][33]) or mqseries.net public forum ([http://www.mqseries.net/phpBB/viewtopic.php?p=389804][34])
  
 
 Feedback
@@ -881,3 +881,4 @@ You can provide your valuable feedback/suggestion to dipakpal.opentech@gmail.com
   [31]: https://www.ibm.com/developerworks/community/groups/community/sdfccloudintegrationiib/
   [32]: https://www.ibm.com/developerworks/community/forums/html/topic?id=2c199351-542a-4c8b-bd2e-ded23e568735
   [33]: https://www.ibm.com/developerworks/community/forums/html/topic?id=2c199351-542a-4c8b-bd2e-ded23e568735
+  [34]: http://www.mqseries.net/phpBB/viewtopic.php?p=389804
