@@ -851,18 +851,18 @@ You can provide your valuable feedback/suggestion to dipakpal.opentech@gmail.com
   [1]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Logo.png
   [2]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure1.png
   [3]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure2.png
-  [4]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure19.png
+  [4]: https://developer.salesforce.com/
   [5]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure3.png
-  [6]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure19.png
+  [6]: https://login.salesforce.com/
   [7]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure4.png
   [8]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure5.png
   [9]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure6.png
-  [10]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure19.png
-  [11]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure19.png
-  [12]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure19.png
+  [10]: http://sourceforge.net/projects/soapui/files/
+  [11]: https://login.salesforce.com/services/Soap/c/30.0
+  [12]: https://test.salesforce.com/services/Soap/u/29.0
   [13]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure7.png
   [14]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure8.png
-  [15]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure19.png
+  [15]: http://www.bubasoft.net/product/xpath-builder/
   [16]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure9.png
   [17]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure10.png
   [18]: https://raw.githubusercontent.com/dipakpal/MyOpenTech-SalesforceCloudIntegration-IIBv9/master/docs/images/Figure11.png
